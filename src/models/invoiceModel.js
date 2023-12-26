@@ -2,7 +2,7 @@ const mongoose =require('mongoose')
 
 const invoiceSchema = new mongoose.Schema({
   userID:{
-    type:mongoose.Schema.ObjectId,
+    type:mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',
     required:true
   },

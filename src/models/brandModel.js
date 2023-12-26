@@ -3,11 +3,13 @@ const mongoose =require('mongoose')
 const brandSchema = new mongoose.Schema({
   brandName:{
     type:String,
-    unique:true
+    unique:true,
+    required:true
   },
 
   brandImg:{
-    type:String
+    type:String,
+    required:true
   }
 },{
   timestamps:true,

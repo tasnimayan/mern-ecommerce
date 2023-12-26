@@ -2,14 +2,14 @@ const mongoose =require('mongoose')
 
 const cartSchema = new mongoose.Schema({
   productID:{
-    type:mongoose.Schema.ObjectId,
-    ref:'productModel',
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'ProductModel',
     required:[true, "A product should be added"]
   },
   
   userID:{
-    type:mongoose.Schema.ObjectId,
-    ref:'userModel',
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'UserModel',
     required:[true, "A product should be added"]
   },
 
