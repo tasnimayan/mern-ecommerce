@@ -15,13 +15,13 @@ const productReviewSchema = new mongoose.Schema({
   },
 
   product: {
-    type: mongoose.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'ProductModel',
     required: true,
   },
 
   user: {
-    type: mongoose.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',
     required: true,
   },

@@ -1,3 +1,20 @@
+## Functionality for All users (Logged or Not Logged)
+
+ProductBrandList
+ProductCategoryList
+ProductSliderList
+ProductDetails
+ProductListByBrand
+ProductListByCategory
+ProductListBySimilar
+ProductListByKeyword
+ProductListByRemark
+ProductReviewList
+
+## Functionality for logged users
+
+CreateProductReview
+
 # E-commerce Web Application using MERN Stack
 
 This project is an E-commerce application built using the MERN (MongoDB, Express.js, React, Node.js) stack. Leveraging the power of these technologies, I've tried to developed a fully functional and scalable online marketplace that offers a seamless shopping experience.

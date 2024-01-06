@@ -255,8 +255,9 @@ const ReviewListService = async (productId) =>{
   }
 }
 
-const CreateReviewService = async () =>{
-  
+const CreateReviewService = async (productReview) =>{
+  let data  = await ProductReviewModel.create(productReview)
+  return data
 }
 
 module.exports = {

@@ -79,6 +79,8 @@ app.get("/", function (req, res) {
 	console.log("request received")
 	res.end();
 })
+
+app.set('etag', false)  // Server won't cache data // enable in production mode
 app.use('/api', productRouter);
 
 

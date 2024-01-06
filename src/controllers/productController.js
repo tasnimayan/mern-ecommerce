@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const {
   BrandListService,
   CategoryListService,
@@ -15,7 +16,7 @@ const {
 exports.ProductBrandList = async (req, res) =>{
    try{
       const brands = await BrandListService();
-      if(!brands.status == 'success'){
+      if(brands.status !== 'success'){
          res.status(404).send(brands)
       }
     res.status(200).send(brands)
@@ -29,7 +30,7 @@ exports.ProductBrandList = async (req, res) =>{
 exports.ProductCategoryList = async (req, res) =>{
    try{
       const data = await CategoryListService()
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -43,7 +44,7 @@ exports.ProductCategoryList = async (req, res) =>{
 exports.ProductSliderList = async (req, res) =>{
    try{
       const data = await SliderListService()
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -57,7 +58,7 @@ exports.ProductSliderList = async (req, res) =>{
 exports.ProductDetails = async (req, res) =>{
    try{
       const data = await DetailsService(req.params.productId)
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -72,7 +73,7 @@ exports.ProductDetails = async (req, res) =>{
 exports.ProductListByBrand = async (req, res) =>{
    try{
       const data = await ListByBrandService(req.params.brandId)
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -87,7 +88,7 @@ exports.ProductListByBrand = async (req, res) =>{
 exports.ProductListByCategory = async (req, res) =>{
    try{
       const data = await ListByCategoryService(req.params.categoryId)
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -102,7 +103,7 @@ exports.ProductListByCategory = async (req, res) =>{
 exports.ProductListBySimilar = async (req, res) =>{
    try{
       const data = await ListBySimilarService(req.params.categoryId)
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -116,7 +117,7 @@ exports.ProductListBySimilar = async (req, res) =>{
 exports.ProductListByKeyword = async (req, res) =>{
    try{
       const data = await ListByKeywordService(req.params.keyword)
-      if(!data.status =="success"){
+      if(data.status !== "success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -130,7 +131,7 @@ exports.ProductListByKeyword = async (req, res) =>{
 exports.ProductListByRemark = async (req, res) =>{
    try{
       const data = await ListByRemarkService(req.params.remark)
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -140,11 +141,11 @@ exports.ProductListByRemark = async (req, res) =>{
     res.status(404).send({err})
    }
 }
-
+// (complete)
 exports.ProductReviewList = async (req, res) =>{
    try{
       const data = await ReviewListService(req.params.productId)
-      if(!data.status =="success"){
+      if(data.status !=="success"){
          res.status(404).send(data)
       }
       res.status(200).send(data)
@@ -154,10 +155,20 @@ exports.ProductReviewList = async (req, res) =>{
     res.status(404).send({err})
    }
 }
-
+// (complete)
 exports.CreateProductReview = async (req, res) =>{
    try{
-    res.status(200).send({message:"success", controller:"CreateProductReview"})
+      let productReview = {
+         review: req.body.review,
+         rating: req.body.rating,
+         product: mongoose.Types.ObjectId(req.params.productId),
+         user: mongoose.Types.ObjectId(req.body.userId),
+      }
+      const data = await CreateReviewService(productReview)
+      if(data.status !== "success"){
+         res.status(404).send(data)
+      }
+      res.status(201).send(data)
    }
    catch(err) {
     console.log(err)
