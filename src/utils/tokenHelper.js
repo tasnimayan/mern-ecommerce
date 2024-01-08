@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
-exports.EncodeToken = (email, userId) => {
+exports.EncodeToken = (userId, email) => {
   if(!email || !userId){
     return null;
   }

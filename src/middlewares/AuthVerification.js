@@ -1,23 +1,25 @@
+const UserModel = require("../models/userModel");
 const { DecodeToken } = require("../utils/tokenHelper");
 
-const AuthVerification = (req, res, next) =>{
+const AuthVerification = async (req, res, next) =>{
   try{
-    if(!req.headers.authorization && !req.headers.authorization.startsWith('Bearer')){
+    if(!req.headers.authorization && !req.headers.authorization?.startsWith('Bearer')){
       return res.status(401).send({message:"Unauthorized"})
     }
-    const token = req.headers['authorization']?.split(' ')[1];
-    const user = DecodeToken(token);
+    const token = req.headers.authorization?.split(' ')[1];
+    const user = await UserModel.verifyToken(token)
 
     if (!user) {
       res.status(401).send({message:"Unauthorized"})
     }
 
     req.token = token;
-    req.user = user;
+    req.user = {_id:user._id,email:user.email, role:user.role };
 
     next();
   }
   catch(err){
+    console.log(err)
     return res.status(500).send({message:"Server Error"})
   }
 }

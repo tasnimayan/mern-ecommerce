@@ -19,6 +19,8 @@ const app = express();
 
 // ==========  Import Application routers  ==========
 const productRouter = require('./src/routes/productRouter')
+const userRouter = require('./src/routes/userRouter')
+const salesRouter = require('./src/routes/salesRouter')
 
 
 //    ==========    MIDDLEWARE     ==========
@@ -66,7 +68,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // ==========   Database Connection   ==========
 mongoose
-  .connect(process.env.DATABASE, {autoIndex:false})
+  .connect(process.env.DATABASE, {autoIndex:true})
   .then(() => console.log('MONGODB connection successful, '+"Status:200"))
   .catch(err => console.log(err));
 
@@ -82,6 +84,8 @@ app.get("/", function (req, res) {
 
 app.set('etag', false)  // Server won't cache data // enable in production mode
 app.use('/api', productRouter);
+app.use('/api/users', userRouter);
+app.use('/api/sales', salesRouter);
 
 
 //  ==========  Invalid Route Handler  ==========
