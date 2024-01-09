@@ -42,7 +42,7 @@ exports.TopFiveProducts = async (req, res) =>{
     res.status(500).send()
   }
 }
-
+// Complete
 exports.AveragePrice = async (req, res) =>{
   try{
     let data = await averagePriceService(req.user._id)
@@ -73,7 +73,7 @@ exports.RevenueByMonth = async (req, res) =>{
   }
 }
 
-
+// Complete
 exports.HighestQuantitySold = async (req, res) =>{
   try{
     let data = await highestSoldService(req.user._id)

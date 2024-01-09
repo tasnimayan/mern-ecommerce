@@ -1,3 +1,7 @@
+## API Reference
+
+<a href="https://documenter.getpostman.com/view/29227149/2s9YsKfrUY#0ec97893-47b6-4177-8597-2d5d06da741b">Go to Documentation</a>
+
 # E-commerce Web Application using MERN Stack
 
 This project is an E-commerce application built using the MERN (MongoDB, Express.js, React, Node.js) stack. Leveraging the power of these technologies, I've tried to developed a fully functional and scalable online marketplace that offers a seamless shopping experience.
@@ -49,34 +53,6 @@ To run this project, you will need to add the following environment variables to
 
 `HOST_MAIL` - type: String
 
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
+`MAIL_PASSWORD` - type: String
 
 ## Acknowledgements
-
-- [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
-- [Awesome README](https://github.com/matiassingers/awesome-readme)
-- [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
