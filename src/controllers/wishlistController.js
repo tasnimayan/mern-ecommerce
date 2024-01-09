@@ -1,18 +1,18 @@
 const {
   WishListService,
-  SaveWishListService,
+  AddWishListService,
   RemoveWishListService,
 } = require('../services/wishlistServices');
 
-exports.WistList = async (req , res)=>{
-    let result =  await WishListService(req.body.userID);
-    return res.status(200).json(result)
+exports.WishList = async (req , res)=>{
+    let data =  await WishListService(req.user._id);
+    return res.status(200).json({status:"success", data})
 }
-exports.SaveWistList = async (req , res)=>{
-    let result =  await SaveWishListService(req.body.userID, req.body.productID);
-    return res.status(200).json(result)
+exports.AddToWishList = async (req , res)=>{
+    let data =  await AddWishListService(req.user._id, req.body.productId);
+    return res.status(200).json({status:"success", data})
 }
-exports.RemoveWistList = async (req , res)=>{
-    let result =  await RemoveWishListService(req.body.userID, req.body.productID);
-    return res.status(200).json(result)
+exports.RemoveWishList = async (req , res)=>{
+    let data =  await RemoveWishListService(req.user._id, req.body.productId);
+    return res.status(200).json({status:"success", data})
 }

@@ -31,7 +31,6 @@ const AvailableFor = (roles) => {
     }
     next();
   };
-
 }
 
 module.exports = {

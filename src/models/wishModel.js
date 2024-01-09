@@ -1,14 +1,15 @@
 const mongoose =require('mongoose')
 
 const wishSchema = new mongoose.Schema({
-  productID:{
-    type:mongoose.Schema.ObjectId,
-    ref: 'ProductModel',
-    required:true,
-  },
+  productID:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref: 'ProductModel',
+    }
+  ],
 
   userID:{
-    type:mongoose.Schema.ObjectId,
+    type:mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',
     required:true,
   }

@@ -1,12 +1,20 @@
 const mongoose = require('mongoose')
 
 const salesSchema = mongoose.Schema({
-  product: {type:String},
-  quantity: {type:Number},
+  productID:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'ProductModel'
+  },
+  userID:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref: 'UserModel',
+    required:true,
+  },
+  quantity: {type:Number, required:true},
   price: {type:Number},
   date: {type:Date}
 },
-{timestamps:true,versionKey:false})
+{timestamps:false, versionKey:false})
 
 const  SalesModel = mongoose.model('sales', salesSchema)
 
