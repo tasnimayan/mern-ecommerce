@@ -5,6 +5,7 @@ const router = express.Router()
 const { ProductCategoryList, ProductListByCategory, ProductSliderList, ProductDetails, ProductBrandList, ProductListByBrand,  ProductListBySimilar, ProductListByKeyword, ProductListByRemark, ProductReviewList, CreateProductReview} = require('../controllers/productController');
 
 const { AuthVerification, AvailableFor } = require('../middlewares/AuthVerification');
+const { FeaturesList } = require('../controllers/featuresController');
 
 // Full url to this route would be  
 // {base_url/api/routing_points_here}
@@ -19,6 +20,7 @@ router.get('/similar/:categoryId', ProductListBySimilar)
 router.get('/search/:keyword', ProductListByKeyword)
 router.get('/remark/:remark', ProductListByRemark)
 router.get('/slider', ProductSliderList)
+router.get('/featured', FeaturesList)
 
 router.route('/products/:productId/review')
   .get(ProductReviewList)

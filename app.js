@@ -1,5 +1,4 @@
 
-
 require('dotenv').config();
 
 const express = require('express');
@@ -21,6 +20,7 @@ const app = express();
 const productRouter = require('./src/routes/productRouter')
 const userRouter = require('./src/routes/userRouter')
 const salesRouter = require('./src/routes/salesRouter')
+const invoiceRouter = require('./src/routes/invoiceRouter')
 
 
 //    ==========    MIDDLEWARE     ==========
@@ -83,9 +83,10 @@ app.get("/", function (req, res) {
 })
 
 app.set('etag', false)  // Server won't cache data // enable in production mode
-app.use('/api/', productRouter);
+app.use('/api/v1/', productRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/sales/', salesRouter);
+app.use('/api/invoice/', invoiceRouter)
 
 
 //  ==========  Invalid Route Handler  ==========

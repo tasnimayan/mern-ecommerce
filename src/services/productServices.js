@@ -231,9 +231,9 @@ const ListByRemarkService = async (remark) =>{
 const ReviewListService = async (productId) =>{
   try {
     let id = new mongoose.Types.ObjectId(productId);
-    let matchStage = {$match:{productID:id}};
+    let matchStage = {$match:{product:id}};
 
-    let joinWithProfileStage = {$lookup: {from: "profiles",localField: "userID",foreignField: "userID",as: "profile",},};
+    let joinWithProfileStage = {$lookup: {from: "profiles",localField: "user",foreignField: "_id",as: "profile",},};
     let unwindProfileStage = { $unwind: "$profile" };
     let projectionStage = {$project:{'des':1,'rating' : 1,'profile.cus_name': 1,}}
 
@@ -254,9 +254,9 @@ const ReviewListService = async (productId) =>{
     return err;
   }
 }
-
+// Complete
 const CreateReviewService = async (productReview) =>{
-  let data  = await ProductReviewModel.create(productReview)
+  let data  = await ProductReviewModel.updateOne({user:productReview.user, product:productReview.product}, productReview, {upsert:true})
   return data
 }
 

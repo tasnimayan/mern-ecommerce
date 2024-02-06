@@ -146,7 +146,7 @@ exports.ProductReviewList = async (req, res) =>{
    try{
       const data = await ReviewListService(req.params.productId)
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -161,12 +161,12 @@ exports.CreateProductReview = async (req, res) =>{
       let productReview = {
          review: req.body.review,
          rating: req.body.rating,
-         product: mongoose.Types.ObjectId(req.params.productId),
-         user: mongoose.Types.ObjectId(req.body.userId),
+         product: new mongoose.Types.ObjectId(req.params.productId),
+         user: new mongoose.Types.ObjectId(req.user._id),
       }
       const data = await CreateReviewService(productReview)
       if(data.status !== "success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(201).send(data)
    }
