@@ -62,8 +62,8 @@ exports.UserLogin = async (req, res) => {
       expires: new Date(Date.now() + 24 * 6060 * 10000),
       httpOnly: false,
     };
-    res.cookie("ecommerce", token, cookieOption);
-    res.status(200).send({data:{_id:user._id, email:user.email,role:user.role}})
+    res.cookie("shopinz", token, cookieOption);
+    res.status(200).send({status:"success",message:"User login successful", data:{_id:user._id, email:user.email,role:user.role}})
   }
   catch(err){
     res.status(500).send({message:err.message})

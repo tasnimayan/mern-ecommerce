@@ -1,0 +1,81 @@
+.knob {
+  width: 54px;
+  height: 33px;
+  position: absolute;
+  vertical-align: middle;
+  border: 0px;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Arial;
+  text-align: center;
+  color: rgb(224, 107, 125);
+  padding: 0px;
+  -webkit-appearance: none;
+  background: #ffa;
+}
+
+.profile-nav .user-heading {
+  background: #fbc02d;
+  color: #fff;
+  border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  padding: 30px;
+  text-align: center;
+}
+
+.profile-nav .user-heading.round a {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border: 10px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+}
+
+.profile-nav .user-heading a img {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.profile-nav .user-heading h1 {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.profile-nav ul > li {
+  border-bottom: 1px solid #ebeae6;
+  margin-top: 0;
+  line-height: 40px;
+}
+
+.profile-nav ul > li > a {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  color: #89817f;
+}
+
+.profile-nav ul > li > a:hover,
+.profile-nav ul > li > a:focus,
+.profile-nav ul li.active a {
+  border-left: 3px solid #fbc02d;
+}
+
+.profile-nav ul > li > a > i {
+  font-size: 16px;
+  padding-right: 10px;
+  padding-left: 4px;
+  color: #bcb3aa;
+}
+
+.bio-row {
+  width: 50%;
+  float: left;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+
+.bio-row p span {
+  width: 100px;
+  display: inline-block;
+}

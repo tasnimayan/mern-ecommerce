@@ -13,7 +13,7 @@ const BrandListService = async () =>{
   }
   catch(err){
     console.log(err)
-    return err
+    return {status:"fail", message:err.message}
   }
 }
 // Complete
@@ -44,6 +44,7 @@ const ListByBrandService = async (brandId) =>{
   }
   catch(err){
     console.log(err)
+    return {status:"fail", message:err.message}
   }
 }
 // Complete
@@ -57,7 +58,7 @@ const CategoryListService = async () =>{
   }
   catch(err){
     console.log(err)
-    return err
+    return {status:"fail", message:err.message}
   }
 }
 // Complete
@@ -99,7 +100,7 @@ const DetailsService = async (productId) =>{
     return { status: "success", data: data };
   } catch (err) {
     console.log(err)
-    return err;
+    return {status:"fail", message:err.message}
   }
 }
 // Complete
@@ -129,6 +130,7 @@ const ListByCategoryService = async (categoryId) =>{
   }
   catch(err){
     console.log(err)
+    return {status:"fail", message:err.message}
   }
 }
 // Complete
@@ -159,6 +161,7 @@ const ListBySimilarService = async (categoryId) =>{
   }
   catch(err){
     console.log(err)
+    return {status:"fail", message:err.message}
   }
   
 }
@@ -192,7 +195,7 @@ const ListByKeywordService = async (keyword) =>{
   }
   catch(err){
     console.log(err)
-    return err
+    return {status:"fail", message:err.message}
   }
 
 }
@@ -223,7 +226,7 @@ const ListByRemarkService = async (remark) =>{
   }
   catch(err){
     console.log(err)
-    return err
+    return {status:"fail", message:err.message}
   }
   
 }
@@ -251,7 +254,7 @@ const ReviewListService = async (productId) =>{
   }
   catch(err) {
     console.log(err)
-    return err;
+    return {status:"fail", message:err.message}
   }
 }
 // Complete

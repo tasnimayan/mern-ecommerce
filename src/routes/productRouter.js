@@ -11,7 +11,7 @@ const { FeaturesList } = require('../controllers/featuresController');
 // {base_url/api/routing_points_here}
 
 
-router.get('/products/:productId', ProductDetails)
+router.get('/product/:productId', ProductDetails)
 router.get('/brands', ProductBrandList)
 router.get('/brands/:brandId', ProductListByBrand)
 router.get('/category', ProductCategoryList)
@@ -22,7 +22,7 @@ router.get('/remark/:remark', ProductListByRemark)
 router.get('/slider', ProductSliderList)
 router.get('/featured', FeaturesList)
 
-router.route('/products/:productId/review')
+router.route(' /:productId/review')
   .get(ProductReviewList)
   .post(AuthVerification, AvailableFor(["user", "admin"]), CreateProductReview)
 

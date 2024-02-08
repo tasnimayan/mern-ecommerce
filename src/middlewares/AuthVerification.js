@@ -3,10 +3,11 @@ const { DecodeToken } = require("../utils/tokenHelper");
 
 const AuthVerification = async (req, res, next) =>{
   try{
-    if(!req.headers.authorization && !req.headers.authorization?.startsWith('Bearer')){
-      return res.status(401).send({message:"Unauthorized"})
-    }
-    const token = req.headers.authorization?.split(' ')[1];
+    // if(!req.headers.authorization && !req.headers.authorization?.startsWith('Bearer')){
+    //   return res.status(401).send({message:"Unauthorized"})
+    // }
+    // const token = req.headers.authorization?.split(' ')[1];
+		const token = req.cookies.shopinz;
     const user = await UserModel.verifyToken(token)
 
     if (!user) {

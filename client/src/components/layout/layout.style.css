@@ -1,0 +1,10 @@
+.searchbox:focus {
+  border: 1px solid black;
+  box-shadow: none;
+  outline: 0;
+}
+
+.btn.search:hover {
+  background-color: #000;
+  color: #fff;
+}

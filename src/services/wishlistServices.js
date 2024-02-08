@@ -9,11 +9,13 @@ const WishListService = async (userId) => {
       {$match:{userID:id}},
       {$lookup:{from:'products', localField:'productID', foreignField:'_id', as:'product', pipeline:[
         {$project:{_id:1, title:1, price:1, discountPrice:1, image:1}}
-      ]}}
+      ]}},
+      {$project:{productID:0, createdAt:0, updatedAt:0}}
     ])
     return { status: "success", data: data[0] };
   }
   catch (err) {
+    console.log(err)
     return { status: "failed", message:err.message };
   }
 }
@@ -33,7 +35,7 @@ const AddWishListService = async (userId, productId) => {
   }
   catch (err) {
     console.log(err)
-    return err;
+    return { status: "fail", message:err.message };
   }
 }
 
@@ -50,7 +52,7 @@ const RemoveWishListService = async (userId, productId) => {
   }
   catch (err) {
     console.log(err)
-    return err;
+    return { status: "fail", message:err.message };
   }
 };
 

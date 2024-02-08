@@ -83,10 +83,10 @@ app.get("/", function (req, res) {
 })
 
 app.set('etag', false)  // Server won't cache data // enable in production mode
-app.use('/api/v1/', productRouter);
-app.use('/api/users/', userRouter);
-app.use('/api/sales/', salesRouter);
-app.use('/api/invoice/', invoiceRouter)
+app.use('/api/v1/products/', productRouter);
+app.use('/api/v1/users/', userRouter);
+app.use('/api/v1/sales/', salesRouter);
+app.use('/api/v1/invoice/', invoiceRouter)
 
 
 //  ==========  Invalid Route Handler  ==========
