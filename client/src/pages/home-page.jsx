@@ -8,6 +8,7 @@ import Features from "../components/features/features.jsx";
 import Categories from "../components/product/categories.jsx";
 import Products from "../components/product/products.jsx";
 import PosterSlider from '../components/product/PosterSlider.jsx';
+import FlashCarousel from '../components/product/FlashCarousel.jsx';
 
 const HomePage = () => {
 
@@ -30,6 +31,7 @@ const HomePage = () => {
         <Layout>
                <Slider/>
                <Features/>
+               <FlashCarousel />
                <Categories/>
                <Products/>
                <PosterSlider />

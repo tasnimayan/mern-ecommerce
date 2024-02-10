@@ -9,6 +9,7 @@ const productSchema = mongoose.Schema({
   image: {type:String},
   star: {type:String},
   stock: {type:Boolean},
+  sku:{type:String},
   remark: {type:String},
   categoryID: {
     type:mongoose.Schema.ObjectId,
@@ -18,7 +19,6 @@ const productSchema = mongoose.Schema({
   brandID: {
     type:mongoose.Schema.ObjectId,
     ref:"BrandModel",
-    required:true
   }
 },{
   timestamps:true,

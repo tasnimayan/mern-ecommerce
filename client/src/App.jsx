@@ -18,6 +18,7 @@ import ProfilePage from "./pages/profile-page.jsx";
 import CartPage from "./pages/cart-page.jsx";
 import InvoicePage from "./pages/invoice-page.jsx";
 import WishPage from './pages/Wish-Page.jsx';
+import CreateProduct from './pages/CreateProduct.jsx';
 const App = () => {
 
 
@@ -42,7 +43,7 @@ const App = () => {
                 <Route path="/cart" element={<CartPage/>}/>
                 <Route path="/invoices" element={<InvoicePage/>}/>
                 <Route path="/wish" element={<WishPage/>}/>
-
+                <Route path="/vendor/add" element={<CreateProduct/>}/>
             </Routes>
         </BrowserRouter>
     );

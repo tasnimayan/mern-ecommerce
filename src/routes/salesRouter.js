@@ -10,6 +10,6 @@ router.get('/top-products', TopFiveProducts ) //Retrieve the top 5 products with
 router.get('/average-price', AuthVerification, AveragePrice) //Calculate and return the average price of products sold.
 router.get('/revenue-by-month', AuthVerification, RevenueByMonth) //Group the sales data by month and year and calculate the total revenue for each month-year combination.
 router.get('/highest-quantity-sold', AuthVerification, HighestQuantitySold) //Find and return the product that had the highest quantity sold on a single day.
-router.get('/department-salary-expense', AuthVerification, ) //Calculate and return the total salary expense for each department.
+// router.get('/department-salary-expense', AuthVerification, ) //Calculate and return the total salary expense for each department.
 
 module.exports = router;

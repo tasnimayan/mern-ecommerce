@@ -25,6 +25,7 @@
     "react-router-dom": "^6.21.1",
     "react-star-ratings": "^2.3.0",
     "sweetalert2": "^11.10.2",
+    "swiper": "^11.0.6",
     "zustand": "^4.4.7"
   },
   "devDependencies": {

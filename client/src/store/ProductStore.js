@@ -87,6 +87,15 @@ const ProductStore=create((set)=>({
         }
     },
 
+    // FeaturedProduct:null,
+    // FeaturedProductRequest:async(Remark)=>{
+    //     set({FeaturedProduct:null})
+    //     let res=await axios.get(`/api/v1/products/featured`);
+    //     if(res.data['status']==="success"){
+    //         set({FeaturedProduct:res.data['data']})
+    //     }
+    // },
+
 
 }))
 

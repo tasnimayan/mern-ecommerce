@@ -19,8 +19,6 @@ const ProductList = () => {
     }
 
 
-
-
     useEffect(() => {
         (async ()=>{
             BrandList===null?await BrandListRequest():null;
