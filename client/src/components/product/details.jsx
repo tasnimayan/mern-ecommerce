@@ -3,7 +3,7 @@ import ProductStore from "../../store/ProductStore.js";
 import DetailsSkeleton from "../../skeleton/details-skeleton.jsx";
 import parse from 'html-react-parser';
 import {useState} from "react";
-import Reviews from "./reviews.jsx";
+import Reviews from "./Reviews.jsx";
 import CartSubmitButton from "../cart/CartSubmitButton.jsx";
 import CartStore from "../../store/CartStore.js";
 import toast from "react-hot-toast";
@@ -49,18 +49,32 @@ const Details = () => {
                         <div className="col-md-7 p-3">
                             <ProductImages/>
                         </div>
-                        <div className="col-md-5 p-3">
+                        <div className="col-md-5 p-3 border">
                             <h4>{Details[0]['title']}</h4>
+                            <div className="box-review">
+                                <span className="order-num me-4"><i className="bi bi-fire text-danger" aria-hidden="true"></i> 0 sold. Only 5451 remain</span>  
+                                <div className="d-inline-block float-end">
+                                    <div className="text-warning d-inline-block me-1" style={{fontSize:"12px"}}>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-half"></i>
+                                    </div>
+                                    <a href="" >0 reviews</a>  
+                                </div>
+                            </div>
+                            {
+                                Details[0]['discount']?(
+                                    <p className="bodyXLarge">Price: <strike class="bodySmal text-danger">${Details[0]['price']}</strike> ${Details[0]['discountPrice']} </p>
+                                ):(
+                                    <span className="bodyXLarge">Price: ${Details[0]['price']}</span>
+                                )
+                            }
+
                             <p className="text-muted bodySmal my-1">Category: {Details[0]['category']['categoryName']}</p>
                             <p className="text-muted bodySmal my-1">Brand: {Details[0]['brand']['brandName']}</p>
                             <p className="bodySmal mb-2 mt-1">{Details[0]['shortDes']}</p>
-                                {
-                                    Details[0]['discount']?(
-                                        <span className="bodyXLarge">Price: <strike class="text-secondary">{Details[0]['price']}</strike> {Details[0]['discountPrice']} </span>
-                                    ):(
-                                        <span className="bodyXLarge">Price: {Details[0]['price']}</span>
-                                    )
-                                }
                             <div className="row">
                                 <div className="col-4 p-2">
                                     <label className="bodySmal">Size</label>
@@ -102,12 +116,14 @@ const Details = () => {
                             </div>
                         </div>
                     </div>
+
+
                     <div className="row mt-3">
-                        <ul className="nav nav-tabs" id="myTab" role="tablist">
-                            <li className="nav-item" role="presentation">
-                                <button className="nav-link active" id="Speci-tab" data-bs-toggle="tab" data-bs-target="#Speci-tab-pane" type="button" role="tab" aria-controls="Speci-tab-pane" aria-selected="true">Specifications</button>
+                        <ul className="nav nav-pills gap-4 bg-dark-subtle p-2 flex-center" id="myTab" role="tablist">
+                            <li className="nav-item border border-2 rounded-3" role="presentation">
+                                <button className="nav-link active" id="Speci-tab" data-bs-toggle="tab" data-bs-target="#Speci-tab-pane" type="button" role="tab" aria-controls="Speci-tab-pane" aria-selected="true">Description</button>
                             </li>
-                            <li className="nav-item" role="presentation">
+                            <li className="nav-item border border-2 rounded-3" role="presentation">
                                 <button className="nav-link" id="Review-tab" data-bs-toggle="tab" data-bs-target="#Review-tab-pane" type="button" role="tab" aria-controls="Review-tab-pane" aria-selected="false">Review</button>
                             </li>
                         </ul>

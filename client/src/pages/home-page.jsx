@@ -9,6 +9,7 @@ import Categories from "../components/product/categories.jsx";
 import Products from "../components/product/products.jsx";
 import PosterSlider from '../components/product/PosterSlider.jsx';
 import FlashCarousel from '../components/product/FlashCarousel.jsx';
+import MostViewedCarousel from '../components/product/MostViewedCarousel.jsx';
 
 const HomePage = () => {
 
@@ -36,6 +37,7 @@ const HomePage = () => {
                <Products/>
                <PosterSlider />
                <Brands/>
+               <MostViewedCarousel />
         </Layout>
     );
 };

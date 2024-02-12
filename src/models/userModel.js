@@ -6,6 +6,8 @@ const { DecodeToken } = require('../utils/tokenHelper')
 
 const userSchema = new mongoose.Schema(
   {
+    fistName: {type:String, required:true},
+    lastName: {type:String},
     email: {
       type:String,
       unique:true,
@@ -15,6 +17,7 @@ const userSchema = new mongoose.Schema(
       type:String,
       required:true,
     },
+    phone: {type:String},
     otp: {
       type:String,
     },

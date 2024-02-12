@@ -1,6 +1,7 @@
 const ProfileModel = require("../models/profileModel");
 const UserModel = require("../models/userModel");
-const EmailSend = require('../utils/emailUtility')
+const EmailSend = require('../utils/emailUtility');
+const { EncodeToken } = require("../utils/tokenHelper");
 const toObjectId = require('mongoose').Types.ObjectId
 
 // complete
@@ -49,9 +50,14 @@ const SignUpService = async (userData) => {
     if(!user){
       return {status:'failed', message:"Could not create account"}
     }
+
+    // Create jwt token for authentication
+    let token = await EncodeToken(user._id, user.email)
+
     // Send OTP upon creating the account
-    let response = userOTPService(user.email)
-    return response;
+    let response = await userOTPService(user.email)
+
+    return {...response, token:token};
   }catch (err) {
     return { status: "failed", message: err.message };
   }

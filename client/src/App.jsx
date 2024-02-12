@@ -19,6 +19,7 @@ import CartPage from "./pages/cart-page.jsx";
 import InvoicePage from "./pages/invoice-page.jsx";
 import WishPage from './pages/Wish-Page.jsx';
 import CreateProduct from './pages/CreateProduct.jsx';
+import RegistrationPage from './pages/RegistrationPage.jsx';
 const App = () => {
 
 
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path="/contact" element={<ContactPage/>}/>
                 <Route path="/complain" element={<ComplainPage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/register" element={<RegistrationPage/>}/>
                 <Route path="/otp" element={<OtpPage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/cart" element={<CartPage/>}/>

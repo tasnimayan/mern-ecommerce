@@ -62,6 +62,7 @@ const FlashCarousel = () => {
                               <img className="w-100 h-100 rounded-top-2 object-fit-cover" src={source} />
                             </div>
                               <div className="card-body px-2">
+                                  <StarRatings rating={2.6} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
                                   <p className="bodySmal text-secondary my-1 line-2">Something is going on then we should</p>
                                   $999
                               </div>

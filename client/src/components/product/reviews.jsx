@@ -17,6 +17,18 @@ const Reviews = () => {
                     })):(<span></span>)
                 }
             </ul>
+
+            <div>
+                <p>Write a review</p>
+                <div className="row">
+                    <label htmlFor="name">Your Name</label>
+                    <input type="text" name="name" />
+                </div>
+                <div className="row">
+                    <label htmlFor="review">Your Review</label>
+                    <textarea name="review" cols="30" rows="10"></textarea>
+                </div>
+            </div>
         </div>
     );
 };

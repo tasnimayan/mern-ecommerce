@@ -1,16 +1,16 @@
-import React from 'react';
 
 const Features = () => {
-    return (
-        <div className="container section">
+  return (
+    <div className="bg-white py-2">
+        <div className="container border rounded-1">
             <div className="row">
 
                 <div className="col-6 p-2 col-md-3 col-lg-3 col-sm-6">
-                    <div className="card shadow-sm">
+                    <div className="card bg-transparent shadow">
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-3">
-                                    <img alt="img" className="w-100" src="https://photo.teamrabbil.com/images/2023/10/09/f1.png" />
+                                    <i class="bi bi-rocket-takeoff fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
                                     <h3 className="fs-6 fw-bold">Free Delivery</h3>
@@ -22,11 +22,11 @@ const Features = () => {
                 </div>
 
                 <div className="col-6 p-2 col-md-3 col-lg-3 col-sm-6">
-                    <div className="card shadow-sm">
+                    <div className="card bg-transparent shadow">
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-3">
-                                    <img alt="img" className="w-100" src="https://photo.teamrabbil.com/images/2023/10/09/f2.png" />
+                                    <i class="bi bi-arrow-repeat fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
                                     <h3 className="fs-6 fw-bold">90 Days Return</h3>
@@ -38,11 +38,11 @@ const Features = () => {
                 </div>
 
                 <div className="col-6 p-2 col-md-3 col-lg-3 col-sm-6">
-                    <div className="card shadow-sm">
+                    <div className="card bg-transparent shadow">
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-3">
-                                    <img alt="img" className="w-100" src="https://photo.teamrabbil.com/images/2023/10/09/f3.png" />
+                                    <i class="bi bi-credit-card fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
                                     <h3 className="fs-6 fw-bold">Secure Payment</h3>
@@ -54,11 +54,11 @@ const Features = () => {
                 </div>
 
                 <div className="col-6 p-2 col-md-3 col-lg-3 col-sm-6">
-                    <div className="card shadow-sm">
+                    <div className="card bg-transparent shadow">
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-3">
-                                    <img alt="img" className="w-100" src= "https://photo.teamrabbil.com/images/2023/10/09/f4.png" />
+                                    <i class="bi bi-headset fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
                                     <h3 className="fs-6 fw-bold">24/7 Support</h3>
@@ -70,8 +70,9 @@ const Features = () => {
                 </div>
             </div>
         </div>
-    );
 
+    </div>
+  );
 };
 
 export default Features;

@@ -25,10 +25,26 @@ const UserStore=create((set)=>({
         return res.data['status'] === "success";
     },
 
+    RegFormData:{firstName:'', lastName:'', phone:'', email:"", password:"", gender:'', role:''},
+    RegFormOnChange:(name,value)=>{
+        set((state)=>({
+            RegFormData:{
+                ...state.RegFormData,
+                [name]:value
+            }
+        }))
+    },
+
+    UserRegRequest:async(formData)=>{
+        set({isFormSubmit:true})
+        let res = await axios.post(`/api/v1/users/signup`, formData);
+        set({isFormSubmit:false})
+        return res.data['status'] === "success";
+    },
+
     VerifyOTPRequest:async(otp)=>{
         set({isFormSubmit:true})
         let res=await axios.get(`/api/v1/users/verify/${otp}`);
-        setEmail(email);
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },

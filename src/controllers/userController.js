@@ -16,8 +16,11 @@ exports.UserSignUp = async (req, res) => {
   }
 
   let user = {
+    fistName: req.body.firstName,
+    lastName: req.body.lastName,
+    phone: req.body.phone,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
   }
   try{
     const result = await SignUpService(user);
@@ -25,6 +28,14 @@ exports.UserSignUp = async (req, res) => {
     if(result.status !== 'success'){
       return res.status(404).send(result)
     }
+
+    //cookie set
+    let cookieOption = {
+      expires: new Date(Date.now() + 24 * 6060 * 10000),
+      httpOnly: false,
+    };
+    res.cookie("shopinz", result.token, cookieOption);
+
     return res.status(200).send(result);
   }
   catch(err){
@@ -75,7 +86,7 @@ exports.UserLogOut = async (req, res) => {
     expires: new Date(Date.now() - 24 * 60 * 60 * 1000),
     httpOnly: false,
   };
-  res.cookie("ecommerce", req.token, cookieOption);
+  res.cookie("shopinz", req.token, cookieOption);
   return res.status(200).send({status:"success"});
 };
 
