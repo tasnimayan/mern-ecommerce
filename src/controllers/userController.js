@@ -5,7 +5,8 @@ const {
   verifyOTPService,
   UpdateProfileService,
   ReadProfileService,
-  SignUpService
+  SignUpService,
+  ReadOrdersService
 } = require("../services/userServices");
 const { EncodeToken } = require("../utils/tokenHelper");
 
@@ -123,4 +124,18 @@ exports.ReadProfile = async (req, res) => {
 
 exports.DeleteProfile = async (req, res) =>{
   //delete profile
+}
+
+exports.UserOrder = async (req, res) =>{
+  try{
+    const data = await ReadOrdersService(req.user._id)
+    if(data.status !=="success"){
+      return res.status(404).send(data)
+    }
+    res.status(200).send(data)
+  }
+  catch(err) {
+    console.log(err)
+    res.status(404).send({status:"fail", message:err.message})
+  }
 }

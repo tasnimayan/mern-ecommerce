@@ -2,6 +2,7 @@ import React from 'react';
 import ProductStore from "../../store/ProductStore.js";
 import BrandsSkeleton from "../../skeleton/brands-skeleton.jsx";
 import {Link} from "react-router-dom";
+import SectionHeadline from './SectionHeadline.jsx';
 
 const Brands = () => {
     const {BrandList}=ProductStore();
@@ -14,8 +15,7 @@ const Brands = () => {
             <div className="section">
                 <div className="container">
                     <div className="row">
-                        <h1 className="headline-4 text-center my-2 p-0 font-releway fw-semibold">Top Brands</h1>
-                        <span className="fs-6 mb-5 text-center">Choose Across Our Most Popular <br />Shopping Brands </span>
+                        <SectionHeadline text="Top brands" />
                         {
                             BrandList.map((item,i)=>{
                                 return (

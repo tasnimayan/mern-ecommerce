@@ -16,10 +16,9 @@ const CartStore=create((set)=>({
         }))
     },
 
-    CartSaveRequest:async(PostBody,productID)=>{
+    CartSaveRequest:async(PostBody)=>{
         try {
             set({isCartSubmit:true})
-            PostBody.productID = productID
             let res=await axios.post(`/api/v1/users/cart-list`,PostBody);
             return res.data['status'] === "success";
         }catch (e) {
@@ -47,6 +46,19 @@ const CartStore=create((set)=>({
         }
     },
 
+    RemoveFromCartRequest: async(id)=>{
+        try {
+            let postBody = {productID:id}
+            set({isCartSubmit:true})
+            let res = await axios.delete(`/api/v1/users/cart-list`, {data:postBody});
+            return res.data['status'] === "success";
+        }catch (e) {
+            console.log(e)
+            unauthorized(e.response.status)
+        }finally {
+            set({isCartSubmit:false})
+        }
+    },
 
 
 

@@ -7,9 +7,11 @@ import Slider from "../components/product/slider.jsx";
 import Features from "../components/features/features.jsx";
 import Categories from "../components/product/categories.jsx";
 import Products from "../components/product/products.jsx";
-import PosterSlider from '../components/product/PosterSlider.jsx';
-import FlashCarousel from '../components/product/FlashCarousel.jsx';
-import MostViewedCarousel from '../components/product/MostViewedCarousel.jsx';
+import TopRatedCarousel from '../components/product/TopRatedCarousel.jsx';
+import Subscribe from './../components/subscribe/Subscribe';
+import TrendingSlider from '../components/product/TrendingSlider.jsx';
+import CouponCard from '../components/product/CouponCard.jsx';
+import OfferSlider from '../components/product/OfferSlider.jsx';
 
 const HomePage = () => {
 
@@ -30,14 +32,16 @@ const HomePage = () => {
 
     return (
         <Layout>
-               <Slider/>
-               <Features/>
-               <FlashCarousel />
-               <Categories/>
-               <Products/>
-               <PosterSlider />
-               <Brands/>
-               <MostViewedCarousel />
+            <Slider/>
+            <Features/>
+            <TrendingSlider />
+            <Categories/>
+            <CouponCard />
+            <Products/>
+            <OfferSlider />
+            <Brands/>
+            <TopRatedCarousel />
+            <Subscribe />
         </Layout>
     );
 };

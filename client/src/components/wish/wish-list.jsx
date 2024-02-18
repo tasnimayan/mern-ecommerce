@@ -1,96 +1,151 @@
 import React, {useEffect} from 'react';
 import WishStore from "../../store/WishStore.js";
+import CartStore from "../../store/CartStore.js";
 import LegalContentSkeleton from "../../skeleton/legal-content-skeleton.jsx";
+import '../../assets/css/cartList.style.css'
+import { toast } from 'react-hot-toast';
+import FullPageLoader from '../../skeleton/FullPageLoader.jsx';
+import { Link } from 'react-router-dom';
 
 
 
 const WishLists = () => {
-    const {WishListRequest, WishList} = WishStore();
+    const {WishListRequest, WishList, WishCount, RemoveFromWishRequest,isWishSubmit} = WishStore();
+    const {CartForm, CartSaveRequest,isCartSubmit} = CartStore()
 
     useEffect(() => {
         (async ()=>{
            await WishListRequest()
-           console.log(WishList)
         })()
-    }, []);
+    }, [WishCount]);
 
     if(WishList === null){
         return <LegalContentSkeleton/>
     }
 
+    const AddToCart = async (id)=>{
+        CartForm.productID = id
+        let res = await CartSaveRequest(CartForm)
+        if(res){
+            toast.success("Product added to cart")
+        }
+        else{
+            toast.error("Something went wrong!")
+        }
+    }
+
+    const RemoveFromWish = async (id)=> {
+        let res = await RemoveFromWishRequest(id)
+        if(res){
+            toast.success("Product Removed")
+        }
+        else{
+            toast.error("Something went wrong!")
+        }
+    }
 
     return (
-        <section className="h-100" style={{backgroundColor: "#eee"}}>
-            <div className="container h-100 py-5">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                <div className="col-10">
-
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
-                    <div>
-                        <p className="mb-0"><span className="text-muted">Sort by:</span> <a href="#!" className="text-body">price <i
-                            className="fas fa-angle-down mt-1"></i></a></p>
+        <div className="container py-5">
+            {
+                isWishSubmit || isCartSubmit ?<FullPageLoader /> : null
+            }
+            <div className="row">
+                <div className="col-md-8 wish bg-gray rounded-4">
+                    <div className="title">
+                        <div className="row">
+                            <div className="col"><h4><b>My Wish List</b></h4></div>
+                            <div className="col align-self-center text-end text-muted">{WishCount} items</div>
+                        </div>
                     </div>
-                    </div>
+                    <hr />
                     {
-                        WishList.map((item) => {
+                        WishList.map((item, idx) => {
                             return (
-                                <div className="card rounded-3 mb-4" key={item._id}>
-                                    <div className="card-body p-4">
-                                        <div className="row d-flex justify-content-between align-items-center">
-                                        <div className="col-md-2 col-lg-2 col-xl-2">
-                                            <img
-                                            src={item.image}
-                                            className="img-fluid rounded-3" alt="Cotton T-shirt" />
+                                <div className="row border-bottom" key={idx}>
+                                    <div className="row main align-items-center">
+                                        <div className="col-2">
+                                            <img className="img-fluid cart-img" src={item.image}/>
                                         </div>
-                                        <div className="col-md-3 col-lg-3 col-xl-3">
-                                            <p className="lead fw-normal mb-2">{item.title}</p>
-                                            <p><span className="text-muted">Size: </span>{item.size}<span className="text-muted">Color: </span>{item.color}</p>
+                                        <div className="col">
+                                            <Link to={`/details/${item._id}`} >
+                                                {/* <div className="row text-muted">Shirt</div> */}
+                                                <p className="row">{item.title}</p>
+                                            </Link>
                                         </div>
-                                        <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                            <button className="btn btn-link px-2">
-                                            <i className="fas fa-minus"></i>
-                                            </button>
-            
-                                            <input id="form1" min="0" name="quantity" value="5" type="number"
-                                            className="form-control form-control-sm" />
-            
-                                            <button className="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i className="fas fa-plus"></i>
+                                        
+                                        <div className="col-2 text-center">&#36; {item.discount? item.discountPrice: item.price}
+                                        </div>
+                                        <div className="col-1">
+                                            <button className="btn btn-sm fs-6 btn-warning" onClick={async ()=>{
+                                                await AddToCart(item._id)}}>
+                                                    <i className="bi bi-cart-check"></i>
                                             </button>
                                         </div>
-                                        <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h5 className="mb-0">${item.price}</h5>
-                                        </div>
-                                        <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="#!" className="text-danger"><i className="fas fa-trash fa-lg"></i></a>
-                                        </div>
+                                        <div className="col-1">
+                                            <button className="btn btn-sm btn-danger fs-6" onClick={async ()=>{
+                                                await RemoveFromWish(item._id)
+                                                await WishListRequest()
+                                                
+                                                }}>
+                                                <i className="bi bi-trash"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             )
                         })
                     }
-
-                    <div className="card mb-4">
-                    <div className="card-body p-4 d-flex flex-row">
-                        <div className="form-outline flex-fill">
-                        <input type="text" id="form1" className="form-control form-control-lg" />
-                        <label className="form-label" for="form1">Discound code</label>
-                        </div>
-                        <button type="button" className="btn btn-outline-warning btn-lg ms-3">Apply</button>
-                    </div>
-                    </div>
-
-                    <div className="card">
                     
+                    
+                    <div className="back-to-shop">
+                        <a href="/" className='border btn btn-sm'>&larr; Back to shop
+                        </a>
                     </div>
-
                 </div>
+
+                <div className="col-md-4 px-lg-5 fs-sm mt-4 mt-md-0">
+                    <div className='border p-4 rounded-1 bg-white mx-4'>
+                        <div className='row feature'>
+                            <div className="col-3"><i className="bi bi-truck fs-3"></i></div>
+                            <div className="col-9">
+                                <p>FREE DELIVERY</p>
+                                <p>On order over $49.99</p>
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <div className='row feature'>
+                            <div className="col-3"><i className="bi bi-shield fs-3"></i></div>
+                            <div className="col-9">
+                                <p>ORDER PROTECTION</p>
+                                <p>secured information</p>
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <div className='row feature'>
+                            <div className="col-3"><i className="bi bi-ticket fs-3"></i></div>
+                            <div className="col-9">
+                                <p>PROMOTION GIFT</p>
+                                <p>special offers!</p>
+                            </div>
+                        </div>
+                        <hr /> 
+
+                        <div className='row feature'>
+                            <div className="col-3"><i className="bi bi-currency-exchange fs-3"></i></div>
+                            <div className="col-9">
+                                <p>MONEY BACK</p>
+                                <p>return over 30 days</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
                 </div>
             </div>
-            </section>
+            
+        </div>
     );
 };
 

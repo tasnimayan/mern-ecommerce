@@ -7,14 +7,20 @@ const ProductCard = ({item}) => {
     price = <p className="bodySmall text-accent fs-6 my-0 fw-semibold">${item['discountPrice']} <span className="strike text-black-50 bodySmall fw-normal">${item['price']}</span> </p>
   }
   return(
-    <div className="col-md-3 p-2 col-lg-2 col-6">
-        <Link to={`/details/${item['_id']}`} className="card h-100 rounded-3 bg-white text-center">
+    <div className="product-card col-md-3 p-2 col-lg-2 col-6">
+        <Link to={`/details/${item['_id']}`} className="card rounded-0 h-100 text-center bg-gray">
+          <div className=" position-relative">
             <img className="w-100" src={item['image']} />
-            <div className="card-body bg-gray">
-                <p className="bodySmal text-secondary my-0 line-2">{item['title']}</p>
-                <StarRatings rating={parseFloat(item['star'])} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
-                {price}
-            </div>
+            {/* <div className="position-absolute bottom-0 end-0 d-none">
+              <i className="bi bi-cart-fill btn btn-sm btn-primary"></i>
+              <i className="bi bi-heart-fill btn btn-sm btn-primary ms-2"></i>
+            </div> */}
+          </div>
+          <div className="card-body">
+              <p className="bodySmal text-secondary my-0 line-2">{item['title']}</p>
+              <StarRatings rating={parseFloat(item['star'])} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
+              {price}
+          </div>
         </Link>
     </div>
   );

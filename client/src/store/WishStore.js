@@ -6,21 +6,10 @@ const WishStore=create((set)=>({
 
     isWishSubmit:false,
 
-    WishForm:{productID:"",color:"",qty:"1",size:""},
-    WishFormChange:(name,value)=>{
-        set((state)=>({
-            WishForm:{
-                ...state.WishForm,
-                [name]:value
-            }
-        }))
-    },
-
-    WishSaveRequest:async(PostBody,productID)=>{
+    WishSaveRequest:async(PostBody)=>{
         try {
             set({isWishSubmit:true})
-            PostBody.productID = productID
-            let res=await axios.post(`/api/v1/users/wish-list`,PostBody);
+            let res = await axios.post(`/api/v1/users/wish-list`,PostBody);
             return res.data['status'] === "success";
         }catch (e) {
             unauthorized(e.response.status)
@@ -30,14 +19,14 @@ const WishStore=create((set)=>({
     },
 
 
-
     WishList:null,
     WishCount:0,
     WishListRequest:async()=>{
         try {
             let res = await axios.get(`/api/v1/users/wish-list`);
-            set({WishList:res.data['data'].product})
-            set({WishCount:(res.data['data']).length})
+            console.log(res)
+            set({WishList:res.data['data'].products})
+            set({WishCount:(res.data['data']).products.length})
 
         }catch (e) {
             console.log(e)
@@ -46,6 +35,22 @@ const WishStore=create((set)=>({
             set({isWishSubmit:false})
         }
     },
+
+    RemoveFromWishRequest: async(id)=>{
+        try {
+            let postBody = {productId:id}
+            set({isWishSubmit:true})
+            let res = await axios.delete(`/api/v1/users/wish-list`, {data:postBody});
+            await WishListRequest()
+            return res.data['status'] === "success";
+        }catch (e) {
+            console.log(e)
+            unauthorized(e.response.status)
+        }finally {
+            set({isWishSubmit:false})
+        }
+    },
+
 
 
 }))

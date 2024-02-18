@@ -10,14 +10,15 @@ const {
   ListByKeywordService,
   ListByRemarkService,
   ReviewListService,
-  CreateReviewService } = require('../services/productServices')
+  CreateReviewService,
+  ListByRatingService } = require('../services/productServices')
 
 // (complete)
 exports.ProductBrandList = async (req, res) =>{
    try{
       const brands = await BrandListService();
       if(brands.status !== 'success'){
-         res.status(404).send(brands)
+         return res.status(404).send(brands)
       }
     res.status(200).send(brands)
    }
@@ -31,7 +32,7 @@ exports.ProductCategoryList = async (req, res) =>{
    try{
       const data = await CategoryListService()
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -45,7 +46,7 @@ exports.ProductSliderList = async (req, res) =>{
    try{
       const data = await SliderListService()
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -59,7 +60,7 @@ exports.ProductDetails = async (req, res) =>{
    try{
       const data = await DetailsService(req.params.productId)
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -74,7 +75,7 @@ exports.ProductListByBrand = async (req, res) =>{
    try{
       const data = await ListByBrandService(req.params.brandId)
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -89,7 +90,7 @@ exports.ProductListByCategory = async (req, res) =>{
    try{
       const data = await ListByCategoryService(req.params.categoryId)
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -104,7 +105,7 @@ exports.ProductListBySimilar = async (req, res) =>{
    try{
       const data = await ListBySimilarService(req.params.categoryId)
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -118,7 +119,7 @@ exports.ProductListByKeyword = async (req, res) =>{
    try{
       const data = await ListByKeywordService(req.params.keyword)
       if(data.status !== "success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -132,7 +133,21 @@ exports.ProductListByRemark = async (req, res) =>{
    try{
       const data = await ListByRemarkService(req.params.remark)
       if(data.status !=="success"){
-         res.status(404).send(data)
+         return res.status(404).send(data)
+      }
+      res.status(200).send(data)
+   }
+   catch(err) {
+    console.log(err)
+    res.status(404).send({err})
+   }
+}
+
+exports.ProductListByRating = async (req, res) =>{
+   try{
+      const data = await ListByRatingService()
+      if(data.status !=="success"){
+         return res.status(404).send(data)
       }
       res.status(200).send(data)
    }
@@ -175,4 +190,3 @@ exports.CreateProductReview = async (req, res) =>{
     res.status(404).send({err})
    }
 }
-

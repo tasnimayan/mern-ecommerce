@@ -5,11 +5,12 @@ import ProfileForm from './Profile-Form';
 
 
 const ProfileDetails = () => {
-  let {ProfileDetails,ProfileDetailsRequest}=UserStore();
+  let {ProfileDetails,ProfileDetailsRequest, OrderDetails, OrderDetailsRequest}=UserStore();
 
     useEffect(() => {
         (async ()=>{
             await ProfileDetailsRequest()
+            await OrderDetailsRequest()
         })()
     }, []);
 
@@ -99,12 +100,22 @@ const ProfileDetails = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>123456</td>
-                    <td>15 july 2023</td>
-                    <td>Mobile</td>
-                    <td>700</td>
-                  </tr>
+                  {
+                    OrderDetails?.map((item, index)=>{
+                      let date = new Date(item.createdAt)
+                      let purchaseDate = `${date.getDate()} /${date.getMonth()+1} /${date.getFullYear()}`
+                      return (
+                        <tr key={index} >
+                          <td>#000</td>
+                          <td>{purchaseDate}</td>
+                          <td>{item.product.title}</td>
+                          <td>{item.price}</td>
+                        </tr>
+                      )
+
+                    })
+                  }
+                  
                 </tbody>
 
                 

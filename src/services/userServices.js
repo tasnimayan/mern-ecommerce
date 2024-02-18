@@ -3,6 +3,7 @@ const UserModel = require("../models/userModel");
 const EmailSend = require('../utils/emailUtility');
 const { EncodeToken } = require("../utils/tokenHelper");
 const toObjectId = require('mongoose').Types.ObjectId
+const InvoiceProductModel = require('../models/invoiceProductModel')
 
 // complete
 const userOTPService = async (email) => {
@@ -98,6 +99,29 @@ const ReadProfileService = async (userId) => {
 const DeleteProfileService = async (userId) =>{
 
 }
+const ReadOrdersService = async (userId) => {
+  try{
+    if(!userId){
+      return { status: "failed", message: "Unauthorized" };
+    }
+    let id = new toObjectId("659a92722fb8853a2e3ff3cc")
+
+    let data = await InvoiceProductModel.aggregate([
+      {$match:{userID:id}},
+      {$lookup:{from:'products', localField:"productID", foreignField:"_id", as:"product", pipeline:[
+        {$project:{title:1, image:1}}
+      ]}},
+      {$unwind:"$product"},
+      {$project: { qty:1, createdAt:1, product:1, price:1, invoiceID:1}}
+    ]);
+
+    return {status:'success' ,data : data}
+  } 
+  catch (err) {
+    console.log(err)
+    return { status: "failed", message: err.message };
+  }
+}
 
 module.exports = {
   SignUpService,
@@ -105,5 +129,6 @@ module.exports = {
   verifyOTPService,
   UpdateProfileService,
   ReadProfileService,
-  DeleteProfileService
+  DeleteProfileService,
+  ReadOrdersService
 };

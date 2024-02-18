@@ -104,6 +104,20 @@ const UserStore=create((set)=>({
         }
     },
 
+    OrderDetails:null,
+    OrderDetailsRequest:async()=>{
+        try {
+            let res=await axios.get(`/api/v1/users/orders`);
+            if(res.data['data']){
+                set({OrderDetails:res.data['data']})
+            }else{
+                set({ProfileDetails:[]})
+            }
+        }catch (e) {
+            unauthorized(e.response.status)
+        }
+    },
+
     ProfileSaveRequest:async(PostBody)=>{
         try {
             set({ProfileDetails:null})

@@ -18,5 +18,8 @@ exports.AddToCart = async (req , res)=>{
 
 exports.RemoveFromCart = async (req , res)=>{
     let data =  await RemoveCartService(req.user._id, req.body.productID);
+    if(data.status !== 'success'){
+      return res.status(404).send(data)
+    }
     return res.status(200).send(data)
 }

@@ -7,8 +7,8 @@ const WishListService = async (userId) => {
 
     let data = await WishModel.aggregate([
       {$match:{userID:id}},
-      {$lookup:{from:'products', localField:'productID', foreignField:'_id', as:'product', pipeline:[
-        {$project:{_id:1, title:1, price:1, discountPrice:1, image:1}}
+      {$lookup:{from:'products', localField:'productID', foreignField:'_id', as:'products', pipeline:[
+        {$project:{_id:1, title:1, price:1, discount:1, discountPrice:1, image:1}}
       ]}},
       {$project:{productID:0, createdAt:0, updatedAt:0}}
     ])

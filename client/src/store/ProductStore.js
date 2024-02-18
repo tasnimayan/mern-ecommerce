@@ -35,6 +35,15 @@ const ProductStore=create((set)=>({
         }
     },
 
+    ListByRating:null,
+    ListByRatingRequest:async()=>{
+        set({ListByRating:null})
+        let res=await axios.get(`/api/v1/products/top-rated`);
+        if(res.data['status']==="success"){
+            set({ListByRating:res.data['data']})
+        }
+    },
+
     ListProduct:null,
     ListByBrandRequest:async(BrandID)=>{
         set({ListProduct:null})

@@ -1,4 +1,4 @@
-import Details from "../components/product/details.jsx";
+import Details from "../components/product/Details.jsx";
 import Layout from "../components/layout/layout.jsx";
 import {useParams} from "react-router-dom";
 import Brands from "../components/product/brands.jsx";

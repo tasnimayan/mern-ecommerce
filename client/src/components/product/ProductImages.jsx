@@ -4,14 +4,14 @@ import "react-image-gallery/styles/css/image-gallery.css"
 const ProductImages = () => {
     const {Details}=ProductStore();
     let images=[
-        {original: Details[0]['details']['img1'], thumbnail: Details[0]['details']['img1']},
-        {original: Details[0]['details']['img2'], thumbnail: Details[0]['details']['img2']},
-        {original: Details[0]['details']['img3'], thumbnail: Details[0]['details']['img3']},
-        {original: Details[0]['details']['img4'], thumbnail: Details[0]['details']['img4']},
-        {original: Details[0]['details']['img5'], thumbnail: Details[0]['details']['img5']},
-        {original: Details[0]['details']['img6'], thumbnail: Details[0]['details']['img6']},
-        {original: Details[0]['details']['img7'], thumbnail: Details[0]['details']['img7']},
-        {original: Details[0]['details']['img8'], thumbnail: Details[0]['details']['img8']},
+        {original: Details['details'].images[0], thumbnail: Details['details'].images[0]},
+        {original: Details['details'].images[1], thumbnail: Details['details'].images[1]},
+        {original: Details['details'].images[2], thumbnail: Details['details'].images[2]},
+        {original: Details['details'].images[3], thumbnail: Details['details'].images[3]},
+        {original: Details['details'].images[4], thumbnail: Details['details'].images[4]},
+        {original: Details['details'].images[5], thumbnail: Details['details'].images[5]},
+        {original: Details['details'].images[6], thumbnail: Details['details'].images[6]},
+        {original: Details['details'].images[7], thumbnail: Details['details'].images[7]},
     ]
 
     return (

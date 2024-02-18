@@ -97,7 +97,7 @@ const DetailsService = async (productId) =>{
       projectionStage,
     ]);
 
-    return { status: "success", data: data };
+    return { status: "success", data: data[0]};
   } catch (err) {
     console.log(err)
     return {status:"fail", message:err.message}
@@ -231,6 +231,39 @@ const ListByRemarkService = async (remark) =>{
   
 }
 
+const ListByRatingService = async () =>{
+  try{
+    let sortStage = {$sort:{star:-1}}
+    let limitStage = {$limit:10}
+    let joinWithBrandStage = {$lookup:{from:'brands', localField:"brandID", foreignField:"_id", as:"brand"}}
+    let joinWithCategoryStage = {$lookup:{from:'categories', localField:"categoryID", foreignField:"_id", as:"category"}}
+    let unwindBrandStage = {$unwind:"$brand"}
+    let unwindCategoryStage = {$unwind:"$category"}
+    let projectionStage = {$project:{'brand._id':0, 'category._id':0, 'categoryID':0, 'brandID':0,}}
+
+    const data = await ProductModel.aggregate([
+      sortStage,
+      limitStage,
+      joinWithBrandStage,
+      joinWithCategoryStage,
+      unwindBrandStage,
+      unwindCategoryStage,
+      projectionStage
+    ])
+
+    if(!data){
+      return {status:"failed"}
+    }
+    return {status:"success", data:data}
+
+  }
+  catch(err){
+    console.log(err)
+    return {status:"fail", message:err.message}
+  }
+  
+}
+
 const ReviewListService = async (productId) =>{
   try {
     let id = new mongoose.Types.ObjectId(productId);
@@ -238,7 +271,7 @@ const ReviewListService = async (productId) =>{
 
     let joinWithProfileStage = {$lookup: {from: "profiles",localField: "user",foreignField: "_id",as: "profile",},};
     let unwindProfileStage = { $unwind: "$profile" };
-    let projectionStage = {$project:{'des':1,'rating' : 1,'profile.cus_name': 1,}}
+    let projectionStage = {$project:{'review':1,'rating' : 1,'profile.cus_name': 1,}}
 
     let data = await ProductReviewModel.aggregate([
       matchStage,
@@ -248,7 +281,7 @@ const ReviewListService = async (productId) =>{
     ]);
 
     if(!data){
-      return {status:"failed"}
+      return {status:"fail"}
     }
     return {status:"success", data:data}
   }
@@ -274,6 +307,7 @@ module.exports = {
   ListByKeywordService,
   ListByRemarkService,
   ReviewListService,
-  CreateReviewService
+  CreateReviewService,
+  ListByRatingService
 };
 

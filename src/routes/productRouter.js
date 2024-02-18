@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 
-const { ProductCategoryList, ProductListByCategory, ProductSliderList, ProductDetails, ProductBrandList, ProductListByBrand,  ProductListBySimilar, ProductListByKeyword, ProductListByRemark, ProductReviewList, CreateProductReview} = require('../controllers/productController');
+const { ProductCategoryList, ProductListByCategory, ProductSliderList, ProductDetails, ProductBrandList, ProductListByBrand,  ProductListBySimilar, ProductListByKeyword, ProductListByRemark, ProductReviewList, CreateProductReview, ProductListByRating} = require('../controllers/productController');
 
 const { AuthVerification, AvailableFor } = require('../middlewares/AuthVerification');
 const { FeaturesList } = require('../controllers/featuresController');
@@ -21,12 +21,11 @@ router.get('/search/:keyword', ProductListByKeyword)
 router.get('/remark/:remark', ProductListByRemark)
 router.get('/slider', ProductSliderList)
 router.get('/featured', FeaturesList)
+router.get('/top-rated', ProductListByRating)
 
-router.route(' /:productId/review')
+router.route('/:productId/review')
   .get(ProductReviewList)
   .post(AuthVerification, AvailableFor(["user", "admin"]), CreateProductReview)
-
-
 
 
 

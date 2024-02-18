@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 
-const { UserSignUp, UserLogin, UserLogOut, VerifyOTP, UpdateProfile, ReadProfile, DeleteProfile } = require('../controllers/userController')
+const { UserSignUp, UserLogin, UserLogOut, VerifyOTP, UpdateProfile, ReadProfile, DeleteProfile, UserOrder } = require('../controllers/userController')
 const {AuthVerification, AvailableFor} = require('../middlewares/AuthVerification')
 const { WishList, AddToWishList, RemoveWishList} = require('../controllers/wishlistController')
 const { CartList, AddToCart, RemoveFromCart } = require('../controllers/cartController')
@@ -20,11 +20,12 @@ router.post('/login', UserLogin)
 router.get('/logout', AuthVerification, UserLogOut)
 
 router.route('/profile')
-  .get(AuthVerification, ReadProfile)  // Get profile
-  .post(AuthVerification, UpdateProfile)  // Update profile
-  .delete(AuthVerification, DeleteProfile)  // Delete profile
+.get(AuthVerification, ReadProfile)  // Get profile
+.post(AuthVerification, UpdateProfile)  // Update profile
+.delete(AuthVerification, DeleteProfile)  // Delete profile
 
 
+router.get('/orders', AuthVerification, UserOrder)
 // // WishList routing
 router.route('/wish-list')
   .get(AuthVerification, AvailableFor(["user"]), WishList)

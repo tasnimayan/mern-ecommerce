@@ -10,7 +10,7 @@ import RefundPage from "./pages/refund-page.jsx";
 import PrivacyPage from "./pages/privacy-page.jsx";
 import TermsPage from "./pages/terms-page.jsx";
 import HowToBuyPage from "./pages/how-to-buy-page.jsx";
-import ContactPage from "./pages/contact-page.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 import ComplainPage from "./pages/complain-page.jsx";
 import LoginPage from "./pages/login-page.jsx";
 import OtpPage from "./pages/otp-page.jsx";
@@ -20,6 +20,7 @@ import InvoicePage from "./pages/invoice-page.jsx";
 import WishPage from './pages/Wish-Page.jsx';
 import CreateProduct from './pages/CreateProduct.jsx';
 import RegistrationPage from './pages/RegistrationPage.jsx';
+
 const App = () => {
 
 
