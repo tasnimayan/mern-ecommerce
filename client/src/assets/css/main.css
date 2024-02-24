@@ -159,6 +159,9 @@ body {
   border-color: var(--themeColor) !important;
   background-color: var(--themeColor);
 }
+.btn-theme:hover {
+  background-color: var(--color-accent) !important;
+}
 
 .border-theme {
   border-color: var(--themeColor) !important;

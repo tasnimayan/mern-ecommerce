@@ -12,7 +12,7 @@ const Slider = () => {
     else {
         return (
             <div>
-                <div id="carouselExampleDark" className="carousel hero-bg carousel-dark slide">
+                <div id="carouselExampleDark" className="carousel bg carousel-dark slide">
                     <div className="carousel-indicators">
                         {SliderList.map((item,i)=>{
                             return(
@@ -35,8 +35,8 @@ const Slider = () => {
                                                 <div className="col-12 col-lg-5 col-sm-12 col-md-5 p-5">
                                                     <h1 className="headline-1 text-teal fw-bold">{item['title']}</h1>
                                                     <p>{item['des']}</p>
-                                                    <Link to="" className="btn text-white btn-success" style={{width:'130px'}}>Men</Link>
-                                                    <Link to="" className="btn text-white btn-success ms-2" style={{width:'130px'}}>Women</Link>
+                                                    <Link to="" className="btn btn-theme" style={{width:'130px'}}>Men</Link>
+                                                    <Link to="" className="btn btn-theme ms-2" style={{width:'130px'}}>Women</Link>
                                                 </div>
                                                 <div className="col-12 col-lg-5 col-sm-12 col-md-5 p-5">
                                                     <img src={item['image']} className="w-100" alt="..." />
