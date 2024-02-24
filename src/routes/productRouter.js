@@ -11,6 +11,7 @@ const { FeaturesList } = require('../controllers/featuresController');
 // {base_url/api/routing_points_here}
 
 
+// router.get('/', AvailableFor(["seller", "admin"]), CreateProduct)
 router.get('/product/:productId', ProductDetails)
 router.get('/brands', ProductBrandList)
 router.get('/brands/:brandId', ProductListByBrand)

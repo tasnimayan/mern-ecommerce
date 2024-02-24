@@ -25,7 +25,7 @@ const UserStore=create((set)=>({
         return res.data['status'] === "success";
     },
 
-    RegFormData:{firstName:'', lastName:'', phone:'', email:"", password:"", gender:'', role:''},
+    RegFormData:{firstName:'', lastName:'', phone:'', email:"", password:"", gender:'male'},
     RegFormOnChange:(name,value)=>{
         set((state)=>({
             RegFormData:{

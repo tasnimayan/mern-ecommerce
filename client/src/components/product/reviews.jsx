@@ -11,6 +11,22 @@ const Reviews = ({productId}) => {
     let handleChange = (name, value) => {
         setReview({...review, [name] : value})
     }
+
+    let handleSubmit = async () => {
+        if(!contact.name || !review.rating){
+            return toast.error("Fields can't be empty")
+        }
+        // Set function for review API
+        // let res = await SendReview(review)
+        let res = false 
+        console.log(contact)
+        if(res){
+            toast.success("Your review has been Submitted")
+        }
+        else{
+            toast.error("Failed to submit!")
+        }
+    }
     
     useEffect(()=>{
         (async ()=>{
@@ -65,7 +81,9 @@ const Reviews = ({productId}) => {
                         <input type="file" name="image" multiple accept="image/*" className="form-control shadow-none" onChange={(e)=>handleChange('image',e.target.files)}/>
                     </div>
                 </div>
-                
+                <div>
+                            <button className="btn btn-theme float-end" type='submit' onClick={async ()=>await handleSubmit()}>Submit</button>
+                        </div>
             </div>
         </div>
     );

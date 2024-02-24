@@ -21,6 +21,7 @@ const productRouter = require('./src/routes/productRouter')
 const userRouter = require('./src/routes/userRouter')
 const salesRouter = require('./src/routes/salesRouter')
 const invoiceRouter = require('./src/routes/invoiceRouter')
+const sellerRouter = require('./src/routes/sellerRouter')
 
 
 //    ==========    MIDDLEWARE     ==========
@@ -87,6 +88,7 @@ app.use('/api/v1/products/', productRouter);
 app.use('/api/v1/users/', userRouter);
 app.use('/api/v1/sales/', salesRouter);
 app.use('/api/v1/invoice/', invoiceRouter)
+app.use('/api/v1/seller/', sellerRouter)
 
 
 //  ==========  Invalid Route Handler  ==========

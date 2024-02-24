@@ -20,17 +20,17 @@ const ProductStore=create((set)=>({
 
     SliderList:null,
     SliderListRequest:async()=>{
-        let res=await axios.get(`/api/v1/products/slider`);
-        if(res.data['status']==="success"){
+        let res = await axios.get(`/api/v1/products/slider`);
+        if(res.data['status'] === "success"){
             set({SliderList:res.data['data']})
         }
     },
 
     ListByRemark:null,
-    ListByRemarkRequest:async(Remark)=>{
+    ListByRemarkRequest:async(remark)=>{
         set({ListByRemark:null})
-        let res=await axios.get(`/api/v1/products/remark/${Remark}`);
-        if(res.data['status']==="success"){
+        let res = await axios.get(`/api/v1/products/remark/${remark}`);
+        if(res.data['status'] === "success"){
             set({ListByRemark:res.data['data']})
         }
     },
@@ -74,12 +74,6 @@ const ProductStore=create((set)=>({
         }
     },
 
-    SearchKeyword:"",
-    SetSearchKeyword:async(keyword)=>{
-        set({SearchKeyword:keyword})
-    },
-
-
     Details:null,
     DetailsRequest:async(id)=>{
         let res=await axios.get(`/api/v1/products/product/${id}`);
@@ -94,17 +88,7 @@ const ProductStore=create((set)=>({
         if(res.data['status']==="success"){
             set({ReviewList:res.data['data']})
         }
-    },
-
-    // FeaturedProduct:null,
-    // FeaturedProductRequest:async(Remark)=>{
-    //     set({FeaturedProduct:null})
-    //     let res=await axios.get(`/api/v1/products/featured`);
-    //     if(res.data['status']==="success"){
-    //         set({FeaturedProduct:res.data['data']})
-    //     }
-    // },
-
+    }
 
 }))
 

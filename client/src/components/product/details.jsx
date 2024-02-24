@@ -72,7 +72,7 @@ const Details = () => {
                             <div className="box-review">
                                 <span className="order-num me-4"><i className="bi bi-fire text-danger" aria-hidden="true"></i> 0 sold. Only 5451 remain</span>
                                 <div className="d-inline-block float-end">
-                                    <StarRatings rating={parseFloat(Details.star)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
+                                    <StarRatings rating={parseFloat(Details.rating)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
                                     <a href="" >0 reviews</a>  
                                 </div>
                             </div>
@@ -132,7 +132,7 @@ const Details = () => {
 
 
                     <div className="row mt-3">
-                        <div className="col-9">
+                        <div className="col-md-9">
                             <ul className="nav nav-pills gap-4 bg-gray p-2 flex-center" id="myTab" role="tablist">
                                 <li className="nav-item border border-2 rounded-3" role="presentation">
                                     <button className="nav-link active" id="Speci-tab" data-bs-toggle="tab" data-bs-target="#Speci-tab-pane" type="button" role="tab" aria-controls="Speci-tab-pane" aria-selected="true">Description</button>
@@ -153,8 +153,14 @@ const Details = () => {
                             </div>
 
                         </div>
-                        <div className="col-3 border">
+                        <div className="col-md-3 border">
+                            <div className="d-flex flex-column">
+                                <div className="p-4 border"></div>
+                                <div className="p-4 border"></div>
+                                <div className="p-4 border"></div>
+                                <div className="p-4 border"></div>
 
+                            </div>
                         </div>
                         
                     </div>

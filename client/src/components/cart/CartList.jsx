@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import cartStore from "../../store/CartStore.js";
 import LegalContentSkeleton from "../../skeleton/legal-content-skeleton.jsx";
-import CartSubmitButton from "./CartSubmitButton.jsx";
+
 
 
 import '../../assets/css/cartList.style.css'

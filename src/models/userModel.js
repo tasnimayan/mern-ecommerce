@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
       required:true,
     },
     phone: {type:String},
+    gender:{type: String},
     otp: {
       type:String,
     },
@@ -69,7 +70,7 @@ const hashPassword = async (password)=>{
 }
 
 userSchema.pre('save', async function (next){
-  user = this
+  let user = this
   if(user.isModified('password') || user.isNew){
 		user.password = await hashPassword(user.password);
   }

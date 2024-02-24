@@ -28,14 +28,14 @@ const verifyOTPService = async (email, otp) => {
   try{
     let  user = await UserModel.findOneAndUpdate({email:email , otp:otp}, {$set:{otp:"-1", isVerified:true}})
     if(!user){
-      return { status: "failed", message: "wrong otp"};
+      return { status: "fail", message: "wrong otp"};
     }
     else{
       return { status: "success", message: "Valid otp"};
     }
   }
     catch (err) {
-    return { status: "failed", message: err.message };
+    return { status: "fail", message: err.message };
   }
 };
 // Complete
@@ -44,12 +44,12 @@ const SignUpService = async (userData) => {
     // check if the user is already available or not
     let isUser = await UserModel.findOne({email:userData.email})
     if(isUser){
-      return { status: "failed", message: "already have an account!" };
+      return { status: "fail", message: "already have an account!" };
     }
 
     let user = await UserModel.create(userData)
     if(!user){
-      return {status:'failed', message:"Could not create account"}
+      return {status:'fail', message:"Could not create account"}
     }
 
     // Create jwt token for authentication
@@ -60,7 +60,7 @@ const SignUpService = async (userData) => {
 
     return {...response, token:token};
   }catch (err) {
-    return { status: "failed", message: err.message };
+    return { status: "fail", message: err.message };
   }
 };
 // Complete 
@@ -73,7 +73,7 @@ const UpdateProfileService = async (userId, updateData) => {
     return { status: "failed", message: err.message };
   }
 };
-// 
+// Complete
 const ReadProfileService = async (userId) => {
   try{
     if(!userId){
@@ -99,12 +99,13 @@ const ReadProfileService = async (userId) => {
 const DeleteProfileService = async (userId) =>{
 
 }
+// complete
 const ReadOrdersService = async (userId) => {
   try{
     if(!userId){
       return { status: "failed", message: "Unauthorized" };
     }
-    let id = new toObjectId("659a92722fb8853a2e3ff3cc")
+    let id = new toObjectId(userId)
 
     let data = await InvoiceProductModel.aggregate([
       {$match:{userID:id}},
@@ -119,7 +120,7 @@ const ReadOrdersService = async (userId) => {
   } 
   catch (err) {
     console.log(err)
-    return { status: "failed", message: err.message };
+    return { status: "fail", message: err.message };
   }
 }
 

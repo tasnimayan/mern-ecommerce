@@ -33,7 +33,7 @@ const TopTrendingCarousel = () => {
                 grabCursor={true}
                 breakpoints={{
                   576: {
-                    slidesPerView: 1
+                    slidesPerView: 2
                   },
 
                   640: {
@@ -62,7 +62,7 @@ const TopTrendingCarousel = () => {
                                   </div>
                                   <div className="col-8">
                                     <h3 className="fs-6 fw-bold line-2">{item.title}</h3>
-                                    <StarRatings rating={parseFloat(item.star)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
+                                    <StarRatings rating={parseFloat(item.rating)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
                                     
                                     <p className="fs-6 fw-semibold text-accent">${item.price}</p>
                                   </div>
@@ -76,7 +76,7 @@ const TopTrendingCarousel = () => {
                   }
               </Swiper>
               <div>
-                <i class="bi bi-arrow-right fs-2 float-end"></i>
+                <i className="bi bi-arrow-right fs-2 float-end"></i>
               </div>
       
             </div>

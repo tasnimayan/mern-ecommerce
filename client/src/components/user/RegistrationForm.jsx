@@ -8,8 +8,15 @@ const RegistrationForm = () => {
   let {RegFormData, RegFormOnChange, UserRegRequest } = UserStore();
   let [gender, setGender] = useState('male');
   let navigate = useNavigate();
+  let [show, setShow] = useState(true)
 
-    const onFormSubmit=async ()=>{
+  let handleGender = (e) =>{
+    let selected = e.target.value;
+    setGender(selected)
+    RegFormOnChange('gender', selected)
+  }
+    const onFormSubmit = async ()=>{
+      // RegFormOnChange('gender', gender)
         if(!ValidationHelper.IsEmail(RegFormData.email)){
             toast.error("Invalid Email Address!")
         }else {
@@ -20,16 +27,25 @@ const RegistrationForm = () => {
     }
     
   return (
-    <section className="bg-white">
-      <div className="role">
+    <section className="bg-white position-relative">
 
+      <div className={`role position-absolute top-0 start-0 bg-black bg-opacity-50 w-100 h-100 ${show?'':'d-none'}`}>
+        <div className='flex-center'>
+          <div className='bg-white p-5 rounded-2 mt-5 text-center'>
+            <h4 className='mb-4'>What are you looking for?</h4>
+            <button className='btn btn-olive' onClick={()=>{setShow(false)}}>Buy Products</button>
+            <a className='btn btn-orange ms-4' href='/seller/register'>Sell Products</a>
+
+          </div>
+        </div>
       </div>
-      <div className="w-75 mx-auto p-4">
+
+      <div className="w-75 mx-auto p-lg-4">
         <div className="flex-center my-5 shadow-smc border">
-          <div className="w-40 h-100">
+          <div className="col-5 h-100 d-none d-md-block">
             <img src="src/assets/images/register_poster.jpg" alt="" className="object-fit-cover" style={{width:"100%", height:"100%"}}/>
           </div>
-          <div className="w-60 p-5 text-center">
+          <div className="col-md-7 py-3 p-md-5 text-center">
             <div>
               <h5 className="text-uppercase fs-3">Registration</h5>
               <div className="flex-center">
@@ -44,49 +60,46 @@ const RegistrationForm = () => {
             <div>
               <div className="row">
                 <div className="col-md-6 my-2">
-                  <input type="text" className="form-control" placeholder="First Name" onChange={(e)=>{RegFormOnChange('firstName', e.target.value)}}/>
+                  <input type="text" className="form-control" placeholder="First Name" required={true} onChange={(e)=>{RegFormOnChange('firstName', e.target.value)}}/>
                 </div>
                 <div className="col-md-6 my-2">
-                  <input type="text" className="form-control" placeholder="Last Name" onChange={(e)=>{RegFormOnChange('lastName', e.target.value)}}/>
+                  <input type="text" className="form-control" placeholder="Last Name" required={true} onChange={(e)=>{RegFormOnChange('lastName', e.target.value)}}/>
                 </div>
               </div>
               
               <div className="row">
                 <div className="col-md-6 my-2">
-                  <input type="text" className="form-control" placeholder="Phone" onChange={(e)=>{RegFormOnChange('phone', e.target.value)}}/>
+                  <input type="text" className="form-control" placeholder="Phone" required={true} onChange={(e)=>{RegFormOnChange('phone', e.target.value)}}/>
                 </div>
+
                 <div className="col-md-6 my-2" >
-                    <label className="male border rounded shadow-sm p-2 w-50">
-                      <input type="radio" name="gender" value="male" 
-                        checked = {gender === 'male'} 
-                        onChange={(e)=>{
-                          setGender('male')
-                          RegFormOnChange('gender', gender)}
-                        }/> Male<br />
-                      <span className="checkmark"></span>
+                  <div className="wrapper d-flex">
+                    <input type="radio" name="gender" value="male" id="option-1"
+                      checked={gender === "male"}
+                      onChange={handleGender}/>
+                    <input type="radio" name="gender" value="female" id="option-2" 
+                      checked={gender === "female"}
+                      onChange={handleGender}
+                    />
+                    <label htmlFor="option-1" className="option option-1">
+                      <span>Male</span>
                     </label>
-                    <label className="female border rounded shadow-sm p-2 w-50">
-                      <input type="radio" name="gender" value="female"
-                        checked = {gender === 'female'}  
-                        onChange={(e)=>{
-                          setGender('female')
-                          RegFormOnChange('gender', gender)}
-                        }
-                        /> Female<br />
-                      <span className="checkmark"></span>
+                    <label htmlFor="option-2" className="option option-2">
+                      <span>Female</span>
                     </label>
+                  </div>
                 </div>
 
               </div>
               <div className="row">
                 <div className="col-md-12 my-2">
-                  <input type="email" className="form-control" placeholder="Email" onChange={(e)=>{RegFormOnChange('email', e.target.value)}}/>
+                  <input type="email" className="form-control" placeholder="Email" required={true} onChange={(e)=>{RegFormOnChange('email', e.target.value)}}/>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-md-12 my-2">
-                  <input type="password" className="form-control" placeholder="Password" onChange={(e)=>{RegFormOnChange('password', e.target.value)}}/>
+                  <input type="password" className="form-control" placeholder="Password" required={true} onChange={(e)=>{RegFormOnChange('password', e.target.value)}}/>
                 </div>
                 <div className="col-md-6"></div>
               </div>

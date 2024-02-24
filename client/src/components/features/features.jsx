@@ -10,10 +10,10 @@ const Features = () => {
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-md-3">
-                                    <i class="bi bi-rocket-takeoff fs-2"></i>
+                                    <i className="bi bi-rocket-takeoff fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
-                                    <h3 className="fs-6 fw-bold">Free Delivery</h3>
+                                    <p className="fs-6 fw-bold">Free Delivery</p>
                                     <span className="bodySmal">For all orders above $99</span>
                                 </div>
                             </div>
@@ -26,10 +26,10 @@ const Features = () => {
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-md-3">
-                                    <i class="bi bi-arrow-repeat fs-2"></i>
+                                    <i className="bi bi-arrow-repeat fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
-                                    <h3 className="fs-6 fw-bold">90 Days Return</h3>
+                                    <p className="fs-6 fw-bold">90 Days Return</p>
                                     <span className="bodySmal">If goods have problem</span>
                                 </div>
                             </div>
@@ -42,10 +42,10 @@ const Features = () => {
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-md-3">
-                                    <i class="bi bi-credit-card fs-2"></i>
+                                    <i className="bi bi-credit-card fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
-                                    <h3 className="fs-6 fw-bold">Secure Payment</h3>
+                                    <p className="fs-6 fw-bold">Secure Payment</p>
                                     <span className="bodySmal">100% Secure Payment</span>
                                 </div>
                             </div>
@@ -58,10 +58,10 @@ const Features = () => {
                         <div className="card-body">
                             <div className="row d-flex flex-column flex-lg-row align-items-center text-center text-lg-start">
                                 <div className="col-md-3">
-                                    <i class="bi bi-headset fs-2"></i>
+                                    <i className="bi bi-headset fs-2"></i>
                                 </div>
                                 <div className="px-0 col-9">
-                                    <h3 className="fs-6 fw-bold">24/7 Support</h3>
+                                    <p className="fs-6 fw-bold">24/7 Support</p>
                                     <span className="bodySmal">Dedicated support</span>
                                 </div>
                             </div>

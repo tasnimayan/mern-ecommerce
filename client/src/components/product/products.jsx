@@ -39,7 +39,7 @@ const Products = () => {
                                                 <div className="row">
                                                     {
                                                         ListByRemark.map((item,i)=>{
-                                                            return <ProductCard item={item} key={i} />
+                                                            return <ProductCard item={item} key={i} className={"product-card col-md-3 p-2 col-lg-2 col-6"}/>
                                                         })
                                                     }
 
@@ -58,7 +58,7 @@ const Products = () => {
                                                 <div className="row">
                                                     {
                                                         ListByRemark.map((item,i)=>{
-                                                            return <ProductCard item={item} key={i} />
+                                                            return <ProductCard item={item} key={i} className={"product-card col-md-3 p-2 col-lg-2 col-6"}/>
                                                         })
                                                     }
 
@@ -75,7 +75,7 @@ const Products = () => {
                                                 <div className="row">
                                                     {
                                                         ListByRemark.map((item,i)=>{
-                                                            return <ProductCard item={item} key={i} />
+                                                            return <ProductCard item={item} key={i} className={"product-card col-md-3 p-2 col-lg-2 col-6"}/>
                                                         })
                                                     }
 
@@ -92,7 +92,7 @@ const Products = () => {
                                                 <div className="row">
                                                     {
                                                         ListByRemark.map((item,i)=>{
-                                                            return <ProductCard item={item} key={i} />
+                                                            return <ProductCard item={item} key={i} className={"product-card col-md-3 p-2 col-lg-2 col-6"}/>
                                                         })
                                                     }
 
@@ -109,7 +109,7 @@ const Products = () => {
                                                 <div className="row">
                                                     {
                                                         ListByRemark.map((item,i)=>{
-                                                            return <ProductCard item={item} key={i} />
+                                                            return <ProductCard item={item} key={i} className={"product-card col-md-3 p-2 col-lg-2 col-6"}/>
                                                         })
                                                     }
 

@@ -34,7 +34,7 @@ const ContactPage = () => {
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.8805549724484!2d90.40571167446994!3d23.715959140099375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8fe0f90a34d%3A0x214d94cd5b35674!2sWard%20No-71%20(Part)%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1708261020348!5m2!1sen!2sbd" width="100%" height="100%" style={{border:'0'}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
-                <div className="col-md-6 fs-md mt-4 mt-md-0 ps-md-3">   
+                <div className="col-md-6 fs-md mt-4 mt-md-0 ps-md-3 bg-white">   
                     <div className="col title"><h4><b>Contact with us</b></h4></div>
                     <div className='rounded-1 bg-white'>
                         <div className="form-group mb-3">

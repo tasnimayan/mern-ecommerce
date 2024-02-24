@@ -2,13 +2,12 @@ const mongoose =require('mongoose')
 
 const productSchema = mongoose.Schema({
   title: {type:String, required:true},
-  shortDes: {type:String, required:true},
   price: {type:Number, required:true},
   discount: {type:Boolean},
   discountPrice: {type:Number},
   image: {type:String},
-  star: {type:String},
-  stock: {type:Boolean},
+  rating: {type:String},
+  stock: {type:Number},
   sku:{type:String},
   remark: {type:String},
   categoryID: {
@@ -19,6 +18,10 @@ const productSchema = mongoose.Schema({
   brandID: {
     type:mongoose.Schema.ObjectId,
     ref:"BrandModel",
+  },
+  sellerID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SellerModel"
   }
 },{
   timestamps:true,
