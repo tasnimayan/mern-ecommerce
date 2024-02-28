@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
 const ProductCard = ({item, className}) => {
-  let price=<p className="bodySmall text-dark my-1">Price: ${item['price']} </p>
+  let price=<p className="bodySmall text-accent fs-6 my-0 fw-semibold">${item['price']} </p>
   if(item['discount']===true){
     price = <p className="bodySmall text-accent fs-6 my-0 fw-semibold">${item['discountPrice']} <span className="strike text-black-50 bodySmall fw-normal">${item['price']}</span> </p>
   }
@@ -17,7 +17,7 @@ const ProductCard = ({item, className}) => {
             </div> */}
           </div>
           <div className="card-body">
-              <p className="bodySmal text-secondary my-0 line-2">{item['title']}</p>
+              <p className="bodySmall text-secondary my-0 line-2" style={{minHeight:'2.8rem'}}>{item['title']}</p>
               <StarRatings rating={parseFloat(item.rating ?? 0)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
               {price}
           </div>

@@ -14,7 +14,18 @@ exports.getCartService = async (userId) => {
       {$unwind:"$product"},
       {$project:{_id:0, userID:0, createdAt:0, updatedAt:0}}
     ])
-    return { status: "success", data: data};
+
+    let totalAmount = 0;
+    data.forEach((item)=>{
+      let price;
+      item.product.discount ? price = parseFloat(item.product.discountPrice) : price = parseFloat(item.product.price)
+      totalAmount += parseInt(item.qty) * price
+    })
+  
+    let vat = totalAmount * 0.05
+    let payable = totalAmount + vat
+
+    return { status: "success", data: data, summary:{totalAmount, vat, payable}};
   }
   catch (err) {
     return { status: "failed", message:err.message };

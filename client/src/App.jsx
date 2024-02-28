@@ -27,6 +27,7 @@ import Products from './components/seller/Products.jsx';
 import LoginForm from './components/seller/Login.jsx';
 import PrivateRoute from './utility/Autentication.jsx';
 import FilterProduct from './components/product/FilterProduct.jsx';
+import OrderStatusPage from './pages/OrderStatusPage.jsx';
 
 const App = () => {
 
@@ -58,6 +59,7 @@ const App = () => {
                 <Route path="/how-to-buy" element={<HowToBuyPage/>}/>
                 <Route path="/contact" element={<ContactPage/>}/>
                 <Route path="/complain" element={<ComplainPage/>}/>
+                <Route path="/orders/status" element={<OrderStatusPage />}/>
 
                 {/* seller related routes  || Use authentication for these routes */}
                 <Route path="/seller/register" element={<SellerRegistration/>}/>

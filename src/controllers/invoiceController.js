@@ -18,9 +18,9 @@ exports.PaymentSuccess = async (req, res) =>{
   try{
     let data = await paymentSuccessService(req.params.trxId)
     if(!data){
-      return res.status(404).send({message:"failed"})
+      return res.redirect('/orders/status?payment=fail');
     }
-    res.status(200).send({message:"success", status:"paid"})
+    res.redirect('/orders/status?payment=success');
   }
   catch(err){
     console.log(err)
@@ -32,9 +32,12 @@ exports.PaymentFail = async (req, res) =>{
   try{
     let data = await paymentFailService(req.params.trxId)
     if(!data){
-      return res.status(404).send({message:"failed"})
+      return res.redirect('/orders/status?payment=fail');
     }
-    res.status(200).send({message:"success", status:"failed"})
+  
+    res.redirect('/orders/status?payment=fail');
+
+    // res.status(200).send({message:"success", status:"failed"})
 
   }
   catch(err){
@@ -47,9 +50,10 @@ exports.PaymentCancel = async (req, res) =>{
   try{
     let data = await paymentCancelService()
     if(!data){
-      return res.status(404).send({message:"failed"})
+      return res.redirect('/orders/status?payment=fail');
     }
-    res.status(200).send({message:"success", status:"canceled"})
+    res.redirect('/orders/status?payment=canceled');
+    // res.status(200).send({message:"success", status:"canceled"})
   }
   catch(err){
     console.log(err)
@@ -63,7 +67,8 @@ exports.PaymentIpn = async (req, res) =>{
     if(!data){
       return res.status(404).send({message:"failed"})
     }
-    res.status(200).send({message:"success", status:req.body.status})
+    res.redirect('/user/orders');
+    // res.status(200).send({message:"success", status:req.body.status})
   }
   catch(err){
     console.log(err)

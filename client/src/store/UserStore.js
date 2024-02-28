@@ -107,7 +107,8 @@ const UserStore=create((set)=>({
     OrderDetails:null,
     OrderDetailsRequest:async()=>{
         try {
-            let res=await axios.get(`/api/v1/users/orders`);
+            let res = await axios.get(`/api/v1/users/orders`);
+            console.log(res.data)
             if(res.data['data']){
                 set({OrderDetails:res.data['data']})
             }else{

@@ -10,7 +10,7 @@ import FullPageLoader from '../../skeleton/FullPageLoader.jsx';
 const CartList = () => {
     const [quantity,SetQuantity]=useState(1);
 
-    const {CartListRequest,CartList,CartCount,CreateInvoiceRequest, RemoveFromCartRequest, isCartSubmit}=cartStore();
+    const {CartListRequest,CartList,CartCount,CreateInvoiceRequest, RemoveFromCartRequest, isCartSubmit, CartSummary}=cartStore();
 
     useEffect(() => {
         (async ()=>{
@@ -21,11 +21,14 @@ const CartList = () => {
     const incrementQuantity=()=>{
         SetQuantity(quantity=>quantity+1)
     }
-
     const decrementQuantity=()=>{
         if(quantity>1){
             SetQuantity(quantity=>quantity-1)
         }
+    }
+    const removeFromCart = async (productId) =>{
+        await RemoveFromCartRequest(productId)
+        await CartListRequest()
     }
 
     if(CartList==null){
@@ -69,8 +72,10 @@ const CartList = () => {
                                             <img className="img-fluid cart-img" src={item.product.image}/>
                                         </div>
                                         <div className="col-5">
-                                            <div className="row text-muted">Shirt</div>
-                                            <div className="row">{item.product.title}</div>
+                                            {/* <div className="row text-muted">Shirt</div> */}
+                                            <div className="row">
+                                                <a className="p-0" href={`/details/${item.productID}`} >{item.product.title}</a>
+                                            </div>
                                         </div>
                                         
                                         <div className="col-2 p-0">
@@ -84,7 +89,7 @@ const CartList = () => {
                                         <div className="col-2 text-center">&#36; {item.product.discount? item.product.discountPrice: item.product.price}
                                         </div>
                                         <div className="col-1">
-                                            <button className="btn btn-sm btn-outline-danger fw-bold" onClick={async ()=>{await RemoveFromCartRequest(item.productID)}}>&#10005;
+                                            <button className="btn btn-sm btn-outline-danger fw-bold" onClick={async ()=>{await removeFromCart(item.productID)}}>&#10005;
                                             </button>
                                         </div>
                                     </div>
@@ -105,7 +110,7 @@ const CartList = () => {
                     <hr />
                     <div className="row">
                         <div className="col ps-0">ITEMS {CartCount}</div>
-                        <div className="col text-right">&#36; {total}
+                        <div className="col text-end">&#36; {CartSummary.totalAmount}
                         </div>
                     </div>
                     <form>
@@ -118,16 +123,26 @@ const CartList = () => {
                         <div>
                             <div className="input-group input-group-sm">
                                 <input type="text" className="form-control shadow-none" placeholder="Enter your code"/>
-                                <button className="btn btn-sm btn-success">Apply</button>
+                                <button className="btn btn-sm btn-secondary">Apply</button>
                             </div>
                         </div>
                     </form>
-                    <div className="row border-top" style={{borderTop: "1px solid rgba(0,0,0,.1)", padding: "2vh 0"}}>
-                        <div className="col">TOTAL PRICE</div>
-                        <div className="col text-right">&#36; {total}</div>
+                    <div className='my-3'>
+                        <div className="row border-top" >
+                            <div className="col">SUB TOTAL</div>
+                            <div className="col text-end">&#36; {total}</div>
+                        </div>
+                        <div className="row border-top">
+                            <div className="col">VAT (5%)</div>
+                            <div className="col text-end">&#36; {CartSummary.vat}</div>
+                        </div>
+                        <div className="row border-top">
+                            <div className="col">TOTAL PAYABLE</div>
+                            <div className="col text-end">&#36; {CartSummary.payable}</div>
+                        </div>
                     </div>
                     
-                    <button onClick={async ()=>{await CreateInvoiceRequest()}} className="btn btn-success w-100">CHECKOUT</button>
+                    <button onClick={async ()=>{await CreateInvoiceRequest()}} className="btn btn-theme w-100">CHECKOUT</button>
                 </div>
             </div>
             

@@ -32,11 +32,14 @@ const CartStore=create((set)=>({
 
     CartList:null,
     CartCount:0,
-    CartListRequest:async()=>{
+    CartSummary: null,
+
+    CartListRequest: async()=>{
         try {
             let res = await axios.get(`/api/v1/users/cart-list`);
             set({CartList:res.data['data']})
             set({CartCount:(res.data['data']).length})
+            set({CartSummary:(res.data['summary'])})
 
         }catch (e) {
             console.log(e)
@@ -84,7 +87,8 @@ const CartStore=create((set)=>({
             unauthorized(e.response.status)
         }finally {
         }
-    }
+    },
+    
 
 }))
 

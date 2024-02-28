@@ -36,6 +36,7 @@ const WishLists = () => {
 
     const RemoveFromWish = async (id)=> {
         let res = await RemoveFromWishRequest(id)
+        await WishListRequest()
         if(res){
             toast.success("Product Removed")
         }
@@ -83,10 +84,7 @@ const WishLists = () => {
                                         </div>
                                         <div className="col-1">
                                             <button className="btn btn-sm btn-danger fs-6" onClick={async ()=>{
-                                                await RemoveFromWish(item._id)
-                                                await WishListRequest()
-                                                
-                                                }}>
+                                                await RemoveFromWish(item._id)}}>
                                                 <i className="bi bi-trash"></i>
                                             </button>
                                         </div>

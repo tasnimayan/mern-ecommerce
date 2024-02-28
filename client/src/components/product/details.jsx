@@ -78,7 +78,7 @@ const Details = () => {
                             </div>
                             {
                                 Details['discount']?(
-                                    <p className="bodyXLarge">Price: <strike class="bodySmal text-danger">${Details['price']}</strike> ${Details['discountPrice']} </p>
+                                    <p className="bodyXLarge">Price: <strike className="bodySmal text-danger">${Details['price']}</strike> ${Details['discountPrice']} </p>
                                 ):(
                                     <span className="bodyXLarge">Price: ${Details['price']}</span>
                                 )

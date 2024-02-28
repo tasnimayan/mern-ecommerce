@@ -58,9 +58,9 @@ const Products = () => {
   return (
     <SellerLayout>
       <div>
-        <div className="mb-9">
-          <h2 className="mb-4">Products</h2>
-          <div className="mb-2 nav nav-links mx-n2 nav">
+        <div className="my-5 ">
+          <h2 className="mb-4 fw-semibold">Products</h2>
+          <div className="mb-2 nav nav-links nav">
             <div className="nav-item"><a role="button" className="px-2 active nav-link" tabIndex="0" href="#">All <span className="text-700 fw-semi-bold">({SellerProducts.length})</span></a></div>
             <div className="nav-item"><a role="button" className="px-2 nav-link" tabIndex="0" href="#">Published <span className="text-700 fw-semi-bold">({SellerProducts.length})</span></a></div>
             <div className="nav-item"><a role="button" className="px-2 nav-link" tabIndex="0" href="#">Drafts <span className="text-700 fw-semi-bold">(0)</span></a></div>

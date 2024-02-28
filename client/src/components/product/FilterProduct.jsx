@@ -79,14 +79,14 @@ const FilterProduct = () => {
                     </div>
 
                     <div className="col-md-9 p-2">
-                        <div className="row">
+                        <div className="row bg-white pb-5">
                             {
                                 ListByRemark === null ? (<ProductsSkeleton/>):(
                                     <div className="container">
-                                        <div className="row">
+                                        <div className="row g-4">
                                         {
                                             ListByRemark.map((item,i)=>{
-                                                return <ProductCard item={item} key={i} className={"product-card col-md-4 p-2 col-lg-3 col-6"}/>
+                                                return <ProductCard item={item} key={i} className={"product-card col-md-4  col-lg-3 col-6"}/>
                                             })
                                         }
                                         </div>

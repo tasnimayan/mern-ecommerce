@@ -18,8 +18,8 @@ const invoiceProductSchema = new mongoose.Schema({
   },
   qty: {type:Number, required:true},
   price: {type:Number, required:true},
-  color:{ type:String, required:true },
-  size:{ type: String, required:true }
+  color:{ type:String },
+  size:{ type: String }
 
 },{
   timestamps:true,

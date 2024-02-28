@@ -103,7 +103,7 @@ const DeleteProfileService = async (userId) =>{
 const ReadOrdersService = async (userId) => {
   try{
     if(!userId){
-      return { status: "failed", message: "Unauthorized" };
+      return { status: "fail", message: "Unauthorized" };
     }
     let id = new toObjectId(userId)
 

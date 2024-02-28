@@ -9,7 +9,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import SectionHeadline from './SectionHeadline'
 
-const FlashCarousel = () => {
+const TrendingSlider = () => {
   const {ListByRating} = ProductStore()
 
   return (
@@ -18,7 +18,7 @@ const FlashCarousel = () => {
         <SectionHeadline text="Top trending" />
 
         <Swiper 
-          // slidesPerView={3}
+          slidesPerView={3}
           effect={'coverflow'}
           grabCursor={true}
           className="mySwiper"
@@ -29,7 +29,7 @@ const FlashCarousel = () => {
             640: {
               slidesPerView: 4,
             },
-            768: {
+            992: {
               slidesPerView: 6,
             }
           }}
@@ -37,16 +37,20 @@ const FlashCarousel = () => {
           {
               ListByRating?.map((item, idx)=>{
                 return (
-                  <SwiperSlide className='bg-transparent p-1'>
-                      <div className='border shadow-sm rounded'>
+                  <SwiperSlide className='bg-transparent p-2'>
+                      <div className='shadow-smc rounded text-lg-center'>
                           <Link to={`/details/${item._id}`} className="w-100">
-                            <div style={{width:'100%',height:'120px'}}>
+                            <div style={{width:'100%',height:'140px'}}>
                               <img className="w-100 h-100 rounded-top-2 object-fit-cover" src={item.image} />
                             </div>
-                              <div className="card-body px-2">
+                              <div className="card-body px-2 py-2">
+                                  <p className="fs-sm text-secondary mt-2 line-1">{item.title}</p>
                                   <StarRatings rating={parseFloat(item.rating)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
-                                  <p className="bodySmal text-secondary my-1 line-2">{item.title}</p>
-                                  <p>{item.discount? item.discountPrice: item.price}</p>
+                                  {
+                                    item.discount? (
+                                      <p className="text-accent fs-md my-0 fw-semibold">${item['discountPrice']} <span className="strike text-black-50 fs-md fw-normal">${item['price']}</span> </p>
+                                    ) : (<p className="text-accent  my-0 fw-semibold">${item['price']} </p>)
+                                  }
                               </div>
                           </Link>
                       </div>
@@ -55,10 +59,6 @@ const FlashCarousel = () => {
                 )
               })
             }
-            <div className="slider-controler">
-              <div className="swiper-button-prev slider-arrow"></div>
-              <div className="swiper-button-next slider-arrow"></div>
-            </div>
         </Swiper>
 
       </div>
@@ -66,4 +66,4 @@ const FlashCarousel = () => {
   );
 };
 
-export default FlashCarousel;
+export default TrendingSlider;

@@ -16,7 +16,7 @@ const WishListService = async (userId) => {
   }
   catch (err) {
     console.log(err)
-    return { status: "failed", message:err.message };
+    return { status: "fail", message:err.message };
   }
 }
 // Complete

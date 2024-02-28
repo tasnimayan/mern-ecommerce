@@ -1,7 +1,8 @@
 
-import sellerStore from '../../store/sellerStore';
-import React, {useEffect, useRef, useState} from 'react';
+import {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
+
+import sellerStore from '../../store/sellerStore';
 
 const TopNav = () => {
   const [visible, setVisible] = useState(false);

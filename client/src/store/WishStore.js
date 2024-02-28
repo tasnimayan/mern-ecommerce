@@ -41,7 +41,6 @@ const WishStore=create((set)=>({
             let postBody = {productId:id}
             set({isWishSubmit:true})
             let res = await axios.delete(`/api/v1/users/wish-list`, {data:postBody});
-            await WishListRequest()
             return res.data['status'] === "success";
         }catch (e) {
             console.log(e)

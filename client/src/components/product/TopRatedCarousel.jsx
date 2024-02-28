@@ -21,11 +21,11 @@ const TopTrendingCarousel = () => {
 }, []);
   
   return (
-    <>
+    <div className='container-fluid bg-white'>
       {
         ListByRating? 
         (
-          <div className="bg-white">
+          <div className="">
             <div className='px-5 pb-5'>
               <SectionHeadline text="Top rated" />
               <Swiper 
@@ -88,7 +88,7 @@ const TopTrendingCarousel = () => {
         )
         
       }
-    </>
+    </div>
 
   );
 };

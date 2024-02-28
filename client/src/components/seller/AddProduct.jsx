@@ -37,7 +37,7 @@ const AddProduct = () => {
   }
   return (
     <SellerLayout >
-      <div className=''>
+      <div className='px-4'>
 
         <nav aria-label="breadcrumb" className="mb-2">
           <ol className="breadcrumb">
@@ -47,22 +47,22 @@ const AddProduct = () => {
           </ol>
         </nav>
 
-        <form action="" className="mb-9">
-          <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
-            <div>
-              <h2 className="mb-2">Add a product</h2>
-              <h5 className="text-700 fw-semi-bold">Orders placed across your store</h5>
+        <form className="mb-9">
+          <div className="d-flex flex-wrap justify-content-between mb-5">
+            <div className=''>
+              <h2 className="mb-0 fw-semibold">Add a product</h2>
+              <p className="m-0 fs-lg text-black-50">Orders placed across your store</p>
             </div>
-            <div className="d-flex flex-wrap gap-2">
-              <button type="button" className="btn btn-phoenix-secondary" onClick={discard}>Discard</button>
-              <button type="button" className="btn btn-phoenix-primary" onClick={saveDraft}>Save draft</button>
-              <button type="submit" onClick={publishProduct} className="btn btn-primary">Publish product</button></div>
+            <div className="d-flex align-items-end gap-2">
+              <button type="button" className="btn btn-gray fs-sm fw-semibold" onClick={discard}>Discard</button>
+              <button type="button" className="btn btn-gray fs-sm fw-semibold" onClick={saveDraft}>Save draft</button>
+              <button type="submit" onClick={publishProduct} className="btn py-2 btn-primary fs-sm fw-semibold">Publish product</button></div>
             </div>
 
 
 
-      <div className="g-5 row">
-        <div className="col-xl-8 col-12">
+      <div className="row">
+        <div className="col-md-8 col-12">
           <h4 className="mb-3">Product Title</h4>
           <input placeholder="Write title here..." className="mb-5 form-control" onChange={(e)=>{productDataOnChange('title', e.target.value)}}/>
           <div className="mb-6">
@@ -82,42 +82,42 @@ const AddProduct = () => {
 
           <div>
             <h4 className="mb-3">Inventory</h4>
-            <div className="g-0 border-top border-bottom border-300 row">
+            <div className="row g-0 border-top border-bottom">
 
               {/* ================ Tabs panel goes here =================*/}
 
-              <div className="col-sm-4 col-12">
-                <ul className="nav nav-tabs flex-sm-column border-bottom border-bottom-sm-0 border-end-sm border-300 vertical-tab h-100 justify-content-between" id="myTab" role="tablist">
+              <div className="col-sm-4 col-12 bg-white">
+                <ul className="nav nav-tabs flex-sm-column border-bottom border-bottom-sm-0 border-end-sm h-100 justify-content-between" id="myTab" role="tablist">
 
                   <li className="nav-item" role="presentation">
-                    <a role="tab" data-bs-toggle="tab" data-bs-target="#pricing" id="pricing-tab" aria-controls="pricing" aria-selected="true" className="text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0 border-300 nav-link active" href="#pricing">
+                    <a role="tab" data-bs-toggle="tab" data-bs-target="#pricing" id="pricing-tab" aria-controls="pricing" aria-selected="true" className="nav-link active text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0" href="#pricing">
                       <i className="bi bi-tag feather feather-tag me-sm-2 nav-icons"></i>
                       <span className="d-none d-sm-inline">Pricing</span>
                   </a>
 
                   </li>
                   <li className="nav-item" role="presentation">
-                    <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0 border-300" id="restock-tab" data-bs-toggle="tab" data-bs-target="#restock" type="button" role="tab" aria-controls="restock" aria-selected="false"  href="#restock">
+                    <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0" id="restock-tab" data-bs-toggle="tab" data-bs-target="#restock" type="button" role="tab" aria-controls="restock" aria-selected="false"  href="#restock">
                       <i className="bi bi-box-seam feather feather-package me-sm-2 nav-icons"></i>
                       <span className="d-none d-sm-inline">Restock</span>
                     </a>
 
                   </li>
                   <li className="nav-item" role="presentation">
-                  <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0 border-300" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false"  href="#shipping">
+                  <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false"  href="#shipping">
                     <i className="bi bi-truck feather feather-package me-sm-2 nav-icons"></i>
                     <span className="d-none d-sm-inline">Shipping</span>
                       
                     </a>
                   </li>
                   <li className="nav-item" role="presentation">
-                    <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0 border-300" id="attributes-tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes" aria-selected="false"  href="#attributes">
+                    <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0" id="attributes-tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes" aria-selected="false"  href="#attributes">
                       <i className="bi bi-sliders2 feather feather-package me-sm-2 nav-icons"></i>
                       <span className="d-none d-sm-inline">Attributes</span>
                     </a>
                   </li>
                   <li className="nav-item" role="presentation">
-                    <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0 border-300" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced" type="button" role="tab" aria-controls="advanced" aria-selected="false"  href="#advanced">
+                    <a className="nav-link text-center text-sm-start cursor-pointer outline-none d-sm-flex align-items-sm-center border-bottom-sm border-end border-end-sm-0" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced" type="button" role="tab" aria-controls="advanced" aria-selected="false"  href="#advanced">
                       <i className="bi bi-shield-lock feather feather-package me-sm-2 nav-icons"></i>
                       <span className="d-none d-sm-inline">Advanced</span>
                     </a>
@@ -239,14 +239,10 @@ const AddProduct = () => {
           </div>
         </div>
 
-        <div className="col-xl-4 col-12">
-          <div className="g-2 row">
-            <div className="col-xl-12 col-12">
+        <div className="col-lg-4 col-12">
               <div className="mb-3 card border">
                 <div className="card-body">
-                  <h4 className="mb-4">Organize</h4>
-                  <div className="gx-3 gy-4 row">
-                    <div className="col-xl-12 col-sm-6 col-12">
+                  <h4 className="">Organize</h4>
                       <div className="d-flex gap-2 mb-2">
                         <h5 className="mb-0 text-1000">Category</h5>
                       </div>
@@ -260,7 +256,6 @@ const AddProduct = () => {
                           })
                         }
                       </select>
-                    </div>
                     <div className="col-xl-12 col-sm-6 col-12">
                       <div className="d-flex gap-2 mb-2">
                         <h5 className="mb-0 text-1000">Brand</h5>
@@ -286,11 +281,10 @@ const AddProduct = () => {
                       <input placeholder="Tags" type="text" className="form-control" onChange={(e)=>{productDataOnChange('tags', e.target.value)}}/>
                     </div>
 
-                  </div>
+                  {/* </div> */}
                 </div>
               </div>
-            </div>
-            <div className="col-xl-12 col-12">
+
               <div className="card border">
                 <div className="card-body">
                   <h4 className="mb-4">Variants</h4>
@@ -309,12 +303,12 @@ const AddProduct = () => {
                         </select>
                         <div className="react-select-container">
                           <div className=" css-b62m3t-container">
-                            <span id="react-select-6-live-region" className="css-7pg0cj-a11yText"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log" className="css-7pg0cj-a11yText"></span>
-                            <div className="react-select__control css-7nu7y9-control">
-                              <div className="react-select__value-container react-select__value-container--is-multi css-hlgwow">
-                                <div className="react-select__placeholder css-1jqq78o-placeholder" id="react-select-6-placeholder"></div>
-                                <div className="react-select__input-container css-19bb58m" data-value="">
-                                  <input className="react-select__input product-form" autoComplete="off" autoCorrect="off" id="react-select-6-input" spellCheck="false" tabIndex="0" type="text" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-activedescendant="" aria-describedby="react-select-6-placeholder" /></div>
+                            <span id="react-select-6-live-region"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log"></span>
+                            <div>
+                              <div>
+                                
+                                <div className="">
+                                  <input className="form-control" autoComplete="off" autoCorrect="off" spellCheck="false" tabIndex="0" type="text" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" /></div>
                               </div>
                               
                             </div>
@@ -336,17 +330,16 @@ const AddProduct = () => {
                         </select>
                         <div className="react-select-container">
                           <div className="react-select__input-container css-19bb58m" data-value="">
-                            <input className="react-select__input product-form form-control" type="text" />
+                            <input className="form-control" type="text" />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <button type="button" className="w-100 btn btn-phoenix-primary">Add another option</button>
+                  <button type="button" className="w-100 btn btn-gray text-link fs-sm fw-semibold">Add another option</button>
                 </div>
               </div>
-            </div>
-          </div>
+
         </div>
       </div>
 

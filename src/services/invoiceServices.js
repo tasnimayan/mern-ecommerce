@@ -48,38 +48,7 @@ exports.createInvoiceService = async (user) =>{
   let delivery_status = "pending"
   let payment_status = "pending"
 
-// step 4: create Invoice
-  let invoice = await InvoiceModel.create({
-    userID: user_id,
-    payable: payable,
-    cus_details: customerDetails,
-    ship_details: shippingDetails,
-    tran_id: tran_id,
-    val_id: val_id,
-    delivery_status: delivery_status,
-    payment_status: payment_status,
-    total: totalAmount,
-    vat: vat,
-  })
 
-
-// step 5: create Invoice product
-  let invoice_id = invoice._id;
-
-  cartProducts.forEach(async (item) =>{
-    await InvoiceProductModel.create({
-      userID:user_id,
-      productID: item.productID,
-      invoiceID: invoice_id,
-      qty:item.qty,
-      price:item.product.discount? item.product.discountPrice: item.product.price,
-      color:item.color,
-      size:item.size
-    })
-  })
-
-// step 6: Remove from Cart
-  await CartModel.deleteMany({userID:user_id})
 
 // step 7: Prepare SSL Payment
   let paymentSettings = await PaymentSettingModel.find();
@@ -121,6 +90,40 @@ exports.createInvoiceService = async (user) =>{
 
 
   let SSLRes = await axios.post(paymentSettings[0]['init_url'], form);
+
+  if(SSLRes.data.status === 'VALID'){
+    // step 4: create Invoice
+    let invoice = await InvoiceModel.create({
+      userID: user_id,
+      payable: payable,
+      cus_details: customerDetails,
+      ship_details: shippingDetails,
+      tran_id: tran_id,
+      val_id: val_id,
+      delivery_status: delivery_status,
+      payment_status: payment_status,
+      total: totalAmount,
+      vat: vat,
+    })
+
+    // step 5: create Invoice product
+    let invoice_id = invoice._id;
+
+    cartProducts.forEach(async (item) =>{
+      await InvoiceProductModel.create({
+        userID:user_id,
+        productID: item.productID,
+        invoiceID: invoice_id,
+        qty:item.qty,
+        price:item.product.discount? item.product.discountPrice: item.product.price,
+        color:item.color,
+        size:item.size
+      })
+    })
+    // step 6: Remove from Cart
+      await CartModel.deleteMany({userID:user_id})
+  }
+
 
   return SSLRes.data
 }
