@@ -19,9 +19,6 @@ const WishLists = () => {
         })()
     }, [WishCount]);
 
-    if(WishList === null){
-        return <LegalContentSkeleton/>
-    }
 
     const AddToCart = async (id)=>{
         CartForm.productID = id
@@ -60,7 +57,7 @@ const WishLists = () => {
                     </div>
                     <hr />
                     {
-                        WishList.map((item, idx) => {
+                        WishList?.map((item, idx) => {
                             return (
                                 <div className="row border-bottom" key={idx}>
                                     <div className="row main align-items-center">

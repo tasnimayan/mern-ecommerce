@@ -7,9 +7,9 @@ const LegalContentSkeleton = () => {
                 <div className="col-md-12">
                     <div className="card p-4">
                         {
-                            Array.from({length:10}).map(()=>{
+                            Array.from({length:10}).map((item,idx)=>{
                                 return(
-                                    <Skeleton count={3}/>
+                                    <Skeleton count={3} key={idx}/>
                                 )
                             })
                         }

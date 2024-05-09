@@ -14,7 +14,7 @@ const LoginForm = () => {
             toast.error("Invalid Email Address!")
         }else {
             let res = await UserLoginRequest(LoginFormData);
-            res?navigate("/"):toast.error("Something Went Wrong!")
+            res?navigate("/"):toast.error("Wrong Credentials!")
         }
     }
 

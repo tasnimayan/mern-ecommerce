@@ -2,6 +2,7 @@ import './profileDetails.style.css'
 import UserStore from "../../store/UserStore.js";
 import { useEffect } from 'react';
 import ProfileForm from './Profile-Form';
+import ProfileSkeleton from '../../skeleton/profile-skeleton.jsx';
 
 
 const ProfileDetails = () => {
@@ -14,6 +15,9 @@ const ProfileDetails = () => {
         })()
     }, []);
 
+  if(!ProfileDetails){
+    return <ProfileSkeleton />
+  }
   return (
     <div className="container">
       <h2>Manage My Account</h2>
@@ -24,8 +28,8 @@ const ProfileDetails = () => {
               <a href="#">
                 <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
               </a>
-              <h1>{ProfileDetails?.cus_name}</h1>
-              <p>{ProfileDetails?.user.email}</p>
+              <h1>{ProfileDetails.details.cus_name}</h1>
+              <p>{ProfileDetails.email ?? ""}</p>
             </div>
             <ul className="nav flex-column nav-pills">
               <li className="">
@@ -43,22 +47,22 @@ const ProfileDetails = () => {
             <hr/>
             <div className="row">
               <div className="bio-row">
-                  <p><span>Name </span>: {ProfileDetails?.cus_name}</p>
+                  <p><span>Name </span>: {ProfileDetails?.details.cus_name}</p>
               </div>
               <div className="bio-row">
-                  <p><span>City </span>: {ProfileDetails?.cus_city}</p>
+                  <p><span>City </span>: {ProfileDetails?.details.cus_city}</p>
               </div>
               <div className="bio-row">
-                  <p><span>Country </span>: {ProfileDetails?.cus_country}</p>
+                  <p><span>Country </span>: {ProfileDetails?.details.cus_country}</p>
               </div>
               <div className="bio-row">
                   <p><span>Birthday</span>: None</p>
               </div>
               <div className="bio-row">
-                  <p><span>Phone </span>: {ProfileDetails?.cus_phone}</p>
+                  <p><span>Phone </span>: {ProfileDetails?.details.cus_phone}</p>
               </div>
               <div className="bio-row">
-                  <p><span>Email </span>: {ProfileDetails?.user.email}</p>
+                  <p><span>Email </span>: {ProfileDetails?.email}</p>
               </div>
             </div>
           </div>

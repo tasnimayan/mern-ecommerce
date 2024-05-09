@@ -3,6 +3,7 @@ import UserStore from './../../store/UserStore';
 import ValidationHelper from './../../utility/ValidationHelper'
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
+import UserSubmitButton from './UserSubmitButton';
 
 const RegistrationForm = () => {
   let {RegFormData, RegFormOnChange, UserRegRequest } = UserStore();
@@ -16,13 +17,16 @@ const RegistrationForm = () => {
     RegFormOnChange('gender', selected)
   }
     const onFormSubmit = async ()=>{
-      // RegFormOnChange('gender', gender)
         if(!ValidationHelper.IsEmail(RegFormData.email)){
             toast.error("Invalid Email Address!")
         }else {
           console.log(RegFormData)
-            // let res = await UserRegRequest(RegFromData);
-            res?navigate("/profile"):toast.error("Something Went Wrong!")
+            let res = await UserRegRequest(RegFormData);
+            if(!res){
+              return toast.error("Could not complete registration")
+            }
+            toast.success("Registration Successful")
+            res?navigate("/verify"):toast.error("Something Went Wrong!")
         }
     }
     
@@ -106,7 +110,8 @@ const RegistrationForm = () => {
 
               <div className="row mt-4">
                 <div className="">
-                  <button className="btn btn-success px-4 float-end" onClick={onFormSubmit}>Register</button>
+                <UserSubmitButton onClick={onFormSubmit} className="btn btn-success px-4 float-end" text="Register"/>
+                  {/* <button className="btn btn-success px-4 float-end" onClick={onFormSubmit}>Register</button> */}
                 </div>
               </div>
 

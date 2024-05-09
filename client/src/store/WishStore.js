@@ -24,13 +24,19 @@ const WishStore=create((set)=>({
     WishListRequest:async()=>{
         try {
             let res = await axios.get(`/api/v1/users/wish-list`);
-            console.log(res)
-            set({WishList:res.data['data'].products})
-            set({WishCount:(res.data['data']).products.length})
+            if(res.data){
+                set({WishList:res.data['data'].products ?? null})
+                set({WishCount:(res.data['data']).products.length ?? 0})
+            }
 
-        }catch (e) {
-            console.log(e)
-            unauthorized(e.response.status)
+        }catch (error) {
+            console.log(error)
+            if (error.response && error.response.status === 404) {
+                console.error("No data found:", error.response.data.message);
+            } else {
+                console.error("Error occurred:", error.message);
+            }
+            unauthorized(error.response.status)
         }finally {
             set({isWishSubmit:false})
         }

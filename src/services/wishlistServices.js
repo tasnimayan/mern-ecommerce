@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const WishListService = async (userId) => {
   try {
     const id = new mongoose.Types.ObjectId(userId)
-
     let data = await WishModel.aggregate([
       {$match:{userID:id}},
       {$lookup:{from:'products', localField:'productID', foreignField:'_id', as:'products', pipeline:[
@@ -12,7 +11,7 @@ const WishListService = async (userId) => {
       ]}},
       {$project:{productID:0, createdAt:0, updatedAt:0}}
     ])
-    return { status: "success", data: data[0] };
+    return data;
   }
   catch (err) {
     console.log(err)

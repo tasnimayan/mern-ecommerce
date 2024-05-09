@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 import axios  from "axios";
-import {getEmail, setEmail, unauthorized} from "../utility/utility.js";
+import {getEmail, unauthorized} from "../utility/utility.js";
 import Cookies from "js-cookie";
 const UserStore=create((set)=>({
 
@@ -19,10 +19,16 @@ const UserStore=create((set)=>({
     },
 
     UserLoginRequest:async(formData)=>{
-        set({isFormSubmit:true})
-        let res = await axios.post(`/api/v1/users/login`, formData);
-        set({isFormSubmit:false})
-        return res.data['status'] === "success";
+        try{
+            set({isFormSubmit:true})
+            let res = await axios.post(`/api/v1/users/login`, formData);
+            set({isFormSubmit:false})
+            return res.data['status'] === "success";
+        }
+        catch(e){
+            set({isFormSubmit:false})
+            console.log(e)
+        }
     },
 
     RegFormData:{firstName:'', lastName:'', phone:'', email:"", password:"", gender:'male'},
@@ -35,24 +41,44 @@ const UserStore=create((set)=>({
         }))
     },
 
-    UserRegRequest:async(formData)=>{
+    UserRegRequest:async (formData)=>{
         set({isFormSubmit:true})
-        let res = await axios.post(`/api/v1/users/signup`, formData);
-        set({isFormSubmit:false})
-        return res.data['status'] === "success";
+        try{
+            let res = await axios.post(`/api/v1/users/signup`, formData);
+            set({isFormSubmit:false})
+            return res.data['status'] === "success";
+        }
+        catch (error) {
+            if (error.response && error.response.status === 404) {
+                console.error("No data found:", error.response.data.message);
+            } else {
+                console.error("Error occurred:", error.message);
+            }
+            set({ isFormSubmit: false });
+            return false; // Return false to indicate failure
+        }
     },
 
     VerifyOTPRequest:async(otp)=>{
         set({isFormSubmit:true})
-        let res=await axios.get(`/api/v1/users/verify/${otp}`);
-        set({isFormSubmit:false})
-        return res.data['status'] === "success";
+        try {
+            let res = await axios.get(`/api/v1/users/verify/${otp}`, { timeout: 5000 });
+            set({ isFormSubmit: false });
+            return res.data['status'] === "success";
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                console.error("No data found:", error.response.data.message);
+            } else {
+                console.error("Error occurred:", error.message);
+            }
+            set({ isFormSubmit: false });
+            return false; // Return false to indicate failure
+        }
     },
-
 
     UserLogoutRequest:async()=>{
         set({isFormSubmit:true})
-        let res=await axios.get(`/api/v1/users/logout`);
+        let res = await axios.get(`/api/v1/users/logout`);
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },
@@ -67,13 +93,6 @@ const UserStore=create((set)=>({
                 [name]:value
             }
         }))
-    },
-    VerifyLoginRequest:async(otp)=>{
-        set({isFormSubmit:true})
-        let email= getEmail();
-        let res=await axios.get(`/api/v1/VerifyLogin/${email}/${otp}`);
-        set({isFormSubmit:false})
-        return res.data['status'] === "success";
     },
 
 
@@ -90,9 +109,9 @@ const UserStore=create((set)=>({
 
 
     ProfileDetails:null,
-    ProfileDetailsRequest:async()=>{
+    ProfileDetailsRequest: async ()=>{
         try {
-            let res=await axios.get(`/api/v1/users/profile`);
+            let res = await axios.get(`/api/v1/users/profile`);
             if(res.data['data']){
                 set({ProfileDetails:res.data['data']})
                 set({ProfileForm:res.data['data']})
@@ -108,7 +127,6 @@ const UserStore=create((set)=>({
     OrderDetailsRequest:async()=>{
         try {
             let res = await axios.get(`/api/v1/users/orders`);
-            console.log(res.data)
             if(res.data['data']){
                 set({OrderDetails:res.data['data']})
             }else{

@@ -16,6 +16,10 @@ const mongoose = require('mongoose')
 // Create Express App Instance
 const app = express();
 
+
+
+
+
 // ==========  Import Application routers  ==========
 const productRouter = require('./src/routes/productRouter')
 const userRouter = require('./src/routes/userRouter')
@@ -63,7 +67,7 @@ app.use((req, res, next) => {
 
 // ==========  Request Visualizing  ==========
 if (process.env.NODE_ENV === 'development') {
-	app.use(morgan('tiny'));
+	app.use(morgan('dev'));
 	console.log('Morgan enabled...');
 }
 
@@ -93,7 +97,7 @@ app.use('/api/v1/seller/', sellerRouter)
 
 
 
-app.use(express.static('client/dist'));
+// app.use(express.static('client/dist'));
 
 // Add React Front End Routing
 app.get('*',function (req,res) {

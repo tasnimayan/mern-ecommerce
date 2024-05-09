@@ -37,7 +37,7 @@ const TrendingSlider = () => {
           {
               ListByRating?.map((item, idx)=>{
                 return (
-                  <SwiperSlide className='bg-transparent p-2'>
+                  <SwiperSlide className='bg-transparent p-2' key={idx}>
                       <div className='shadow-smc rounded text-lg-center'>
                           <Link to={`/details/${item._id}`} className="w-100">
                             <div style={{width:'100%',height:'140px'}}>
@@ -45,7 +45,7 @@ const TrendingSlider = () => {
                             </div>
                               <div className="card-body px-2 py-2">
                                   <p className="fs-sm text-secondary mt-2 line-1">{item.title}</p>
-                                  <StarRatings rating={parseFloat(item.rating)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
+                                  <StarRatings rating={parseFloat(item.rating??0)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
                                   {
                                     item.discount? (
                                       <p className="text-accent fs-md my-0 fw-semibold">${item['discountPrice']} <span className="strike text-black-50 fs-md fw-normal">${item['price']}</span> </p>

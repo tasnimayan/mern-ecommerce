@@ -19,7 +19,8 @@ const Categories = () => {
                         <SectionHeadline text="shop by categories" />
                         {
                             CategoryList.map((item,i)=>{
-                                return ( <div key={i} className="col-3 text-center col-md-8r p-1">
+                                return ( 
+                                <div key={i} className="col-3 text-center col-md-8r p-1">
                                     <Link to={`/by-category/${item['_id']}`} className="card bg-gray category">
                                         <div className="flex-center flex-column ">
                                             <div className='p-2' style={{width:"100px", height:"100px"}}>

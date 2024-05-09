@@ -37,10 +37,15 @@ const ProductStore=create((set)=>({
 
     ListByRating:null,
     ListByRatingRequest:async()=>{
-        set({ListByRating:null})
-        let res=await axios.get(`/api/v1/products/top-rated`);
-        if(res.data['status']==="success"){
-            set({ListByRating:res.data['data']})
+        try{
+            set({ListByRating:null})
+            let res=await axios.get(`/api/v1/products/top-rated`);
+            if(res.data['status']==="success"){
+                set({ListByRating:res.data['data']})
+            }
+        }
+        catch(error){
+            console.log(error)
         }
     },
 

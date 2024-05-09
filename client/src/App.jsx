@@ -37,7 +37,7 @@ const App = () => {
                 <Route path="/" element={<HomePage/>}/>
                 {/* User related routes */}
                 <Route path="/register" element={<RegistrationPage/>}/>
-                <Route path="/otp" element={<OtpPage/>}/>
+                <Route path="/verify" element={<OtpPage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/cart" element={<CartPage/>}/>
@@ -49,6 +49,8 @@ const App = () => {
                 <Route path="/by-category/:id" element={<ProductByCategory/>}/>
                 <Route path="/by-keyword/:keyword" element={<ProductByKeyword/>}/>
                 <Route path="/remark/:remark" element={<FilterProduct/>}/>
+                <Route path="/men" element={<ProductByCategory/>}/>
+                <Route path="/women" element={<ProductByCategory/>}/>
                 <Route path="/details/:id" element={<ProductDetails/>}/>
                 {/* About Site routes */}
                 <Route path="/about" element={<AboutPage/>}/>

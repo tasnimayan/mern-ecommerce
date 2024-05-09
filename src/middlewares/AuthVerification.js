@@ -20,6 +20,7 @@ const AuthVerification = async (req, res, next) =>{
     req.token = token;
     req.user = {_id:user._id,email:user.email, role:user.role };
 
+
     next();
   }
   catch(err){
@@ -28,6 +29,7 @@ const AuthVerification = async (req, res, next) =>{
   }
 }
 
+// Middleware to verify different role based routing
 const AvailableFor = (roles) => {
   return (req, res, next) => {
     let role = req.user?.role || req.seller?.role

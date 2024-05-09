@@ -7,18 +7,17 @@ import {useNavigate} from "react-router-dom";
 
 const OtpForm = () => {
 
-    let {OTPFormData,OTPFormOnChange,VerifyLoginRequest}=UserStore();
+    let {OTPFormData,OTPFormOnChange,VerifyOTPRequest}=UserStore();
     let navigate=useNavigate();
 
     const onFormSubmit=async ()=>{
         if(ValidationHelper.IsEmpty(OTPFormData.otp)){
             toast.error("Valid PIN Required")
         }else {
-            let res=await VerifyLoginRequest(OTPFormData.otp);
-            res?navigate("/"):toast.error("Something Went Wrong !")
+            let res=await VerifyOTPRequest(OTPFormData.otp);
+            res?navigate("/"):toast.error("Incorrect Code!")
         }
     }
-
 
     return (
         <div className="container section">

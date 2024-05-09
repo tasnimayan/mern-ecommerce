@@ -48,6 +48,7 @@ const SignUpService = async (userData) => {
     }
 
     let user = await UserModel.create(userData)
+
     if(!user){
       return {status:'fail', message:"Could not create account"}
     }
@@ -81,13 +82,14 @@ const ReadProfileService = async (userId) => {
     }
     let id = new toObjectId(userId)
 
-    let data = await ProfileModel.aggregate([
+    let data = await UserModel.aggregate([
       {$match:{_id:id}},
-      {$lookup:{from:'users', localField:"_id", foreignField:"_id", as:"user", pipeline:[
-        {$project:{_id:0, email:1, role:1, isVerified:1}}
+      {$lookup:{from:'profiles', localField:"_id", foreignField:"_id", as:"details", pipeline:[
+        {$project:{_id:0}}
       ]}},
-      {$unwind:"$user"},
+      {$unwind:"$details"},
     ]);
+
     return {status:'success' ,data : data[0]}
   } 
   catch (err) {

@@ -49,9 +49,9 @@ const TopTrendingCarousel = () => {
                 className="mySwiper"
               >
                 {
-                    ListByRating.map((item)=>{
+                    ListByRating.map((item, idx)=>{
                       return (
-                        <SwiperSlide className='p-1'>
+                        <SwiperSlide className='p-1' key={idx}>
       
                           <div className="card">
                             <Link to={`/details/${item._id}`} className="w-100">
@@ -62,7 +62,7 @@ const TopTrendingCarousel = () => {
                                   </div>
                                   <div className="col-8">
                                     <h3 className="fs-6 fw-bold line-2">{item.title}</h3>
-                                    <StarRatings rating={parseFloat(item.rating)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
+                                    <StarRatings rating={parseFloat(item.rating??0)} starRatedColor="gold" starDimension="12px" starSpacing="1px"/>
                                     
                                     <p className="fs-6 fw-semibold text-accent">${item.price}</p>
                                   </div>
