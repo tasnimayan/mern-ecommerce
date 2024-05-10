@@ -28,9 +28,9 @@ import LoginForm from './components/seller/Login.jsx';
 import PrivateRoute from './utility/Autentication.jsx';
 import FilterProduct from './components/product/FilterProduct.jsx';
 import OrderStatusPage from './pages/OrderStatusPage.jsx';
+import ProductByType from './pages/ProductByType.jsx';
 
 const App = () => {
-
     return (
         <BrowserRouter>
             <Routes>
@@ -49,8 +49,8 @@ const App = () => {
                 <Route path="/by-category/:id" element={<ProductByCategory/>}/>
                 <Route path="/by-keyword/:keyword" element={<ProductByKeyword/>}/>
                 <Route path="/remark/:remark" element={<FilterProduct/>}/>
-                <Route path="/men" element={<ProductByCategory/>}/>
-                <Route path="/women" element={<ProductByCategory/>}/>
+                <Route path="/men" element={<ProductByType categoryId="65da16965bbd2a52c887720d"/>}/>
+                <Route path="/women" element={<ProductByType categoryId="65da16a65bbd2a52c887720e"/>}/>
                 <Route path="/details/:id" element={<ProductDetails/>}/>
                 {/* About Site routes */}
                 <Route path="/about" element={<AboutPage/>}/>

@@ -147,10 +147,10 @@ const AppNavBar = () => {
                                 <Link className="nav-link" to={`/remark/${'new'}`}>New Arrival</Link>
                             </span>
                             <span className="nav-item me-4">
-                                <Link className="nav-link" to={`/by-category/65da16965bbd2a52c887720d`}>Men</Link>
+                                <Link className="nav-link" to={`/men`}>Men</Link>
                             </span>
                             <span className="nav-item me-4">
-                                <Link className="nav-link" to={`/by-category/65da16a65bbd2a52c887720e`}>Women</Link>
+                                <Link className="nav-link" to={`/women`}>Women</Link>
                             </span>
                             <span className="nav-item me-4">
                                 <Link className="nav-link" to={`/remark/${'trending'}`}>Trending</Link>
