@@ -134,11 +134,16 @@ exports.SellerProducts = async (req, res) =>{
 
 // complete
 exports.CreateProduct = async (req, res) =>{
+
   try{
+    const baseURL = "http://localhost:8000/"
+    console.log(req.files)
+    const photos = req.files?.map(item => baseURL+item.path.replace(/\\/g,'/').slice(6));
+    
     let productData = {
-      title:req.body.title,
       des: req.body.des,
-      image: null,
+      image: photos[0],
+      images:photos,
       price: req.body.price,
       discount: false,
       discountPrice: req.body.discountPrice,

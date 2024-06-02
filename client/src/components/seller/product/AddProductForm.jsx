@@ -13,9 +13,10 @@ const AddProductForm = () => {
     e.preventDefault();
 
     const selectedFile = e.target.files;
-    console.log(selectedFile)
     if(selectedFile){
       setFile(selectedFile.name)
+      console.log(file)
+      productData.photos = selectedFile
     }
   }
 
@@ -50,6 +51,8 @@ const AddProductForm = () => {
   const discard = () =>{
     // 
   }
+
+
   return (
     <div>
       {/* ---- Top Heading section with Buttons ---- */}
@@ -174,16 +177,16 @@ const AddProductForm = () => {
                               <tr>
                                 <td className="text-1000 fw-bold py-1">Product in stock now:</td>
                                 <td className="text-700 fw-semi-bold py-1">
-                                  $1,090
+                                  00
                                 </td>
                               </tr>
                               <tr>
                                 <td className="text-1000 fw-bold py-1">Product in transit:</td>
-                                <td className="text-700 fw-semi-bold py-1">5000</td>
+                                <td className="text-700 fw-semi-bold py-1">00</td>
                               </tr>
                               <tr>
                                 <td className="text-1000 fw-bold py-1">Total stock over lifetime:</td>
-                                <td className="text-700 fw-semi-bold py-1">20,000</td>
+                                <td className="text-700 fw-semi-bold py-1">00</td>
                               </tr>
                             </tbody>
                           </table>

@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const ProductModel = require("../models/productModel");
+const ProductDetailsModel = require("../models/productDetailModel");
 const SellerModel = require("../models/sellerModel");
 
 const EmailSend = require('../utils/emailUtility');
@@ -157,6 +158,16 @@ const CreateProductService = async (productData)=>{
     }
 
     let product = await ProductModel.create(productData)
+    let details ={
+      productID: mongoose.Types.ObjectId(product._id),
+      images: productData.images,
+      des: productData.des,
+      color: productData.color,
+      size: productData.size,
+      tags: productData.tags,      
+    }
+    let setDetails = await ProductDetailsModel(details)
+
     if(!product){
       return {status:'fail', message:"Could not add product"}
     }

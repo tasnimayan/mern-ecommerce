@@ -5,7 +5,7 @@ const router = express.Router()
 
 const { SellerSignUp, SellerLogin, SellerLogOut, SellerProducts, ReadProfile, UpdateProfile, DeleteProfile, VerifyOTP, CreateProduct, SearchProduct, DeleteProduct } = require('../controllers/sellerController')
 const { AvailableFor, SellerAuthVerification} = require('../middlewares/AuthVerification')
-
+const upload = require('./../utils/multer')
 // Full url to this route would be  
 // {base_url/api/v1/seller/__endpoint__}
 
@@ -24,7 +24,7 @@ router.route('/profile')
 
 router.route('/products')
   .get(SellerAuthVerification, AvailableFor(["seller"]), SellerProducts )
-  .post(SellerAuthVerification, AvailableFor(["seller"]), CreateProduct )
+  .post(SellerAuthVerification, AvailableFor(["seller"]), upload.array('photos',8), CreateProduct )
 
 router.route('/products/:productId')
   .delete(SellerAuthVerification, AvailableFor(["seller"]), DeleteProduct )

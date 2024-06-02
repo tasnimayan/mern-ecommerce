@@ -27,14 +27,14 @@ const sellerStore = create((set)=>({
       return res.data['status'] === "success";
   },
 
-  UserLogoutRequest:async()=>{
+  SellerLogoutRequest:async()=>{
     set({isFormSubmit:true})
     let res = await axios.get(`/api/v1/seller/logout`);
     set({isFormSubmit:false})
     return res.data['status'] === "success";
   },
 
-  productData: {title:'', des:'', image:'', price:'', discount:false, discountPrice:'',categoryID:'', brandID:'', tags:'', size:'',color:'', stock:1, sku:''},
+  productData: {title:'', des:'', photos:[], price:'', discount:false, discountPrice:'',categoryID:'', brandID:'', tags:'', size:'',color:'', stock:1, sku:''},
   productDataOnChange: (name, value) => {
     set((state)=>({
       productData:{
@@ -92,22 +92,22 @@ const sellerStore = create((set)=>({
   },
 
   
-// RegFormData:{firstName:'', lastName:'', phone:'', email:"", password:"", gender:'male'},
-// RegFormOnChange:(name,value)=>{
-//     set((state)=>({
-//         RegFormData:{
-//             ...state.RegFormData,
-//             [name]:value
-//         }
-//     }))
-// },
+RegFormData:{storeName:'', phone:'', email:"", password:""},
+RegFormOnChange:(name,value)=>{
+    set((state)=>({
+        RegFormData:{
+            ...state.RegFormData,
+            [name]:value
+        }
+    }))
+},
 
-// UserRegRequest:async(formData)=>{
-//     set({isFormSubmit:true})
-//     let res = await axios.post(`/api/v1/users/signup`, formData);
-//     set({isFormSubmit:false})
-//     return res.data['status'] === "success";
-// },
+SellerRegRequest:async(formData)=>{
+    set({isFormSubmit:true})
+    let res = await axios.post(`/api/v1/seller/signup`, formData);
+    set({isFormSubmit:false})
+    return res.data['status'] === "success";
+},
 
 // VerifyOTPRequest:async(otp)=>{
 //     set({isFormSubmit:true})

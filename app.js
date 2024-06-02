@@ -100,9 +100,9 @@ app.use('/api/v1/seller/', sellerRouter)
 // app.use(express.static('client/dist'));
 
 // Add React Front End Routing
-app.get('*',function (req,res) {
-    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-})
+// app.get('*',function (req,res) {
+//     res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+// })
 
 
 //  ==========  Invalid Route Handler  ==========
