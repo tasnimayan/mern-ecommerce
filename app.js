@@ -31,7 +31,7 @@ const sellerRouter = require('./src/routes/sellerRouter')
 //    ==========    MIDDLEWARE     ==========
 
 // ==========  Base Static File Provider Path  ========== 
-// app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public')));
 
 
 // ==========  Request Limiting For Security Purpose  ==========
@@ -83,10 +83,10 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // ==========  ROUTE HANDLERS  ==========
-// app.get("/", function (req, res) {
-// 	console.log("request received")
-// 	res.end();
-// })
+app.get("/", function (req, res) {
+	console.log("API is running")
+	res.end();
+})
 
 app.set('etag', false)  // Server won't cache data // enable in production mode
 app.use('/api/v1/products/', productRouter);
@@ -94,15 +94,6 @@ app.use('/api/v1/users/', userRouter);
 app.use('/api/v1/sales/', salesRouter);
 app.use('/api/v1/invoice/', invoiceRouter)
 app.use('/api/v1/seller/', sellerRouter)
-
-
-
-// app.use(express.static('client/dist'));
-
-// Add React Front End Routing
-// app.get('*',function (req,res) {
-//     res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-// })
 
 
 //  ==========  Invalid Route Handler  ==========
