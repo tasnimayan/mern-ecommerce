@@ -85,7 +85,7 @@ mongoose.connection.on('disconnected', () => {
 // ==========  ROUTE HANDLERS  ==========
 app.get("/", function (req, res) {
 	console.log("API is running")
-	res.end();
+	res.status(200).send({status:"success", message:"API is running"});
 })
 
 app.set('etag', false)  // Server won't cache data // enable in production mode
