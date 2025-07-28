@@ -1,4 +1,3 @@
-
 const UserModel = require("../models/userModel");
 const {
   userOTPService,
@@ -6,14 +5,14 @@ const {
   UpdateProfileService,
   ReadProfileService,
   SignUpService,
-  ReadOrdersService
+  ReadOrdersService,
 } = require("../services/userServices");
 const { EncodeToken } = require("../utils/tokenHelper");
 
 // Signup complete with OTP mailing
 exports.UserSignUp = async (req, res) => {
-  if(!req.body.email && !req.body.password){
-    res.status(404).send({message:"email or password can not be empty"})
+  if (!req.body.email && !req.body.password) {
+    res.status(404).send({ message: "email or password can not be empty" });
   }
 
   let user = {
@@ -22,12 +21,12 @@ exports.UserSignUp = async (req, res) => {
     phone: req.body.phone,
     email: req.body.email,
     password: req.body.password,
-  }
-  try{
+  };
+  try {
     const result = await SignUpService(user);
 
-    if(result.status !== 'success'){
-      return res.status(404).send(result)
+    if (result.status !== "success") {
+      return res.status(404).send(result);
     }
 
     //cookie set
@@ -38,19 +37,18 @@ exports.UserSignUp = async (req, res) => {
     res.cookie("shopinz", result.token, cookieOption);
 
     return res.status(200).send(result);
-  }
-  catch(err){
-    res.status(500).send({message:err.message})
+  } catch (err) {
+    res.status(500).send({ message: err.message });
   }
 };
 // OTP verification complete
-exports.VerifyOTP = async (req, res) =>{
-  let result = await verifyOTPService(req.user?.email, req.params.otp)
-  if(result.status !== 'success'){
-    return res.status(404).send(result)
+exports.VerifyOTP = async (req, res) => {
+  let result = await verifyOTPService(req.user?.email, req.params.otp);
+  if (result.status !== "success") {
+    return res.status(404).send(result);
   }
-  return res.status(200).send(result)
-}
+  return res.status(200).send(result);
+};
 // Not needed
 exports.UserOTP = async (req, res) => {
   const result = await userOTPService(req.user.email);
@@ -59,27 +57,32 @@ exports.UserOTP = async (req, res) => {
 
 // Login System complete
 exports.UserLogin = async (req, res) => {
-  let email = req.body.email ?? '';
-  let password = req.body.password ?? '';
-  try{
+  let email = req.body.email ?? "";
+  let password = req.body.password ?? "";
+  try {
     const user = await UserModel.Login(email, password);
 
     if (!user) {
-      return res.status(404).json({message:"No user found"});
+      return res.status(404).json({ message: "No user found" });
     }
     // Create jwt token for authentication
-    let token = await EncodeToken(user._id, user.email)
+    let token = await EncodeToken(user._id, user.email);
     //cookie set
     let cookieOption = {
       expires: new Date(Date.now() + 24 * 6060 * 10000),
       httpOnly: false,
     };
     res.cookie("shopinz", token, cookieOption);
-    res.status(200).send({status:"success",message:"User login successful", data:{_id:user._id, email:user.email,role:user.role}})
+    res
+      .status(200)
+      .send({
+        status: "success",
+        message: "User login successful",
+        data: { _id: user._id, email: user.email, role: user.role },
+      });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
   }
-  catch(err){
-    res.status(500).send({message:err.message})
-  } 
 };
 // Logout complete
 exports.UserLogOut = async (req, res) => {
@@ -88,15 +91,30 @@ exports.UserLogOut = async (req, res) => {
     httpOnly: false,
   };
   res.cookie("shopinz", req.token, cookieOption);
-  return res.status(200).send({status:"success"});
+  return res.status(200).send({ status: "success" });
 };
 
 // Complete
 exports.UpdateProfile = async (req, res) => {
   // None other than this fields will be updated
-  let validUpdate = ["cus_name", "cus_add", "cus_city", "cus_country", "cus_postcode", "cus_state", "cus_phone", "ship_add", "ship_city", "ship_country", "ship_name", "ship_phone", "ship_postcode", "ship_state"]
-  
-  let  data = {
+  let validUpdate = [
+    "cus_name",
+    "cus_add",
+    "cus_city",
+    "cus_country",
+    "cus_postcode",
+    "cus_state",
+    "cus_phone",
+    "ship_add",
+    "ship_city",
+    "ship_country",
+    "ship_name",
+    "ship_phone",
+    "ship_postcode",
+    "ship_state",
+  ];
+
+  let data = {
     cus_name: req.body.cus_name,
     cus_add: req.body.cus_add,
     cus_city: req.body.cus_city,
@@ -110,11 +128,10 @@ exports.UpdateProfile = async (req, res) => {
     ship_name: req.body.ship_name,
     ship_phone: req.body.ship_phone,
     ship_postcode: req.body.ship_postcode,
-    ship_state: req.body.ship_state
-  }
+    ship_state: req.body.ship_state,
+  };
   const result = await UpdateProfileService(req.user._id, data);
   return res.status(200).json(result);
-  
 };
 // Modification needed for validation
 exports.ReadProfile = async (req, res) => {
@@ -122,20 +139,19 @@ exports.ReadProfile = async (req, res) => {
   return res.status(200).send(result);
 };
 
-exports.DeleteProfile = async (req, res) =>{
+exports.DeleteProfile = async (req, res) => {
   //delete profile
-}
+};
 
-exports.UserOrder = async (req, res) =>{
-  try{
-    const data = await ReadOrdersService(req.user._id)
-    if(data.status !=="success"){
-      return res.status(404).send(data)
+exports.UserOrder = async (req, res) => {
+  try {
+    const data = await ReadOrdersService(req.user._id);
+    if (data.status !== "success") {
+      return res.status(404).send(data);
     }
-    res.status(200).send(data)
+    res.status(200).send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(404).send({ status: "fail", message: err.message });
   }
-  catch(err) {
-    console.log(err)
-    res.status(404).send({status:"fail", message:err.message})
-  }
-}
+};
