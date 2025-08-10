@@ -83,6 +83,22 @@ app.use("/api/v1/sales/", salesRouter);
 app.use("/api/v1/invoice/", invoiceRouter);
 app.use("/api/v1/seller/", sellerRouter);
 
+app.use("/api/v1/legal-details/:type", (req, res) => {
+  const type = req.params.type;
+  if (type === "privacy-policy") {
+    res.status(200).send({ status: "success", message: "Privacy Policy" });
+  } else if (type === "terms-and-conditions") {
+    res
+      .status(200)
+      .send({ status: "success", message: "Terms and Conditions" });
+  } else {
+    res.status(404).send({
+      status: "failed",
+      message: "No route found at ${req.originalUrl}",
+    });
+  }
+});
+
 //  ==========  Invalid Route Handler  ==========
 app.all("*", (req, res, next) => {
   const err = new Error(`No route found at ${req.originalUrl}`);
