@@ -36,7 +36,15 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // ========== Cross Origin Resource Sharing Enable  ==========
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // Vite dev
+      "https://shopinz-ui.vercel.app", // prod
+    ],
+    credentials: true, // Allow cookies
+  })
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10kb" }));
@@ -50,7 +58,7 @@ app.use(mongoSanitize());
 // ==========  CORS POLICY  ==========
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "script-src * ");
-  res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });

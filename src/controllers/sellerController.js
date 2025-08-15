@@ -12,6 +12,7 @@ const {
   DeleteProductService,
 } = require("../services/sellerService");
 const { EncodeToken } = require("../utils/tokenHelper");
+const { ResetCookieOption, CookieOption } = require("../utils");
 
 // Signup complete with OTP mailing
 exports.SellerSignUp = async (req, res) => {
@@ -35,11 +36,7 @@ exports.SellerSignUp = async (req, res) => {
     }
 
     //cookie set
-    let cookieOption = {
-      expires: new Date(Date.now() + 24 * 6060 * 10000),
-      httpOnly: false,
-    };
-    res.cookie("seller", result.token, cookieOption);
+    res.cookie("seller", result.token, CookieOptio);
 
     return res.status(200).send(result);
   } catch (err) {
@@ -70,18 +67,12 @@ exports.SellerLogin = async (req, res) => {
     // Create jwt token for authentication
     let token = await EncodeToken(seller._id, seller.email);
     //cookie set
-    let cookieOption = {
-      expires: new Date(Date.now() + 24 * 6060 * 10000),
-      httpOnly: false,
-    };
-    res.cookie("seller", token, cookieOption);
-    res
-      .status(200)
-      .send({
-        status: "success",
-        message: "Login successful",
-        data: { _id: seller._id, email: seller.email, role: seller.role },
-      });
+    res.cookie("seller", token, CookieOption);
+    res.status(200).send({
+      status: "success",
+      message: "Login successful",
+      data: { _id: seller._id, email: seller.email, role: seller.role },
+    });
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: err.message });
@@ -89,11 +80,7 @@ exports.SellerLogin = async (req, res) => {
 };
 // Logout complete
 exports.SellerLogOut = async (req, res) => {
-  let cookieOption = {
-    expires: new Date(Date.now() - 24 * 60 * 60 * 1000),
-    httpOnly: false,
-  };
-  res.cookie("seller", req.token, cookieOption);
+  res.cookie("seller", req.token, ResetCookieOption);
   return res.status(200).send({ status: "success" });
 };
 

@@ -7,6 +7,7 @@ const {
   SignUpService,
   ReadOrdersService,
 } = require("../services/userServices");
+const { CookieOption, ResetCookieOption } = require("../utils");
 const { EncodeToken } = require("../utils/tokenHelper");
 
 // Signup complete with OTP mailing
@@ -30,11 +31,7 @@ exports.UserSignUp = async (req, res) => {
     }
 
     //cookie set
-    let cookieOption = {
-      expires: new Date(Date.now() + 24 * 6060 * 10000),
-      httpOnly: false,
-    };
-    res.cookie("shopinz", result.token, cookieOption);
+    res.cookie("shopinz", result.token, CookieOption);
 
     return res.status(200).send(result);
   } catch (err) {
@@ -68,29 +65,19 @@ exports.UserLogin = async (req, res) => {
     // Create jwt token for authentication
     let token = await EncodeToken(user._id, user.email);
     //cookie set
-    let cookieOption = {
-      expires: new Date(Date.now() + 24 * 6060 * 10000),
-      httpOnly: false,
-    };
-    res.cookie("shopinz", token, cookieOption);
-    res
-      .status(200)
-      .send({
-        status: "success",
-        message: "User login successful",
-        data: { _id: user._id, email: user.email, role: user.role },
-      });
+    res.cookie("shopinz", token, CookieOption);
+    res.status(200).send({
+      status: "success",
+      message: "User login successful",
+      data: { _id: user._id, email: user.email, role: user.role, token: token },
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 // Logout complete
 exports.UserLogOut = async (req, res) => {
-  let cookieOption = {
-    expires: new Date(Date.now() - 24 * 60 * 60 * 1000),
-    httpOnly: false,
-  };
-  res.cookie("shopinz", req.token, cookieOption);
+  res.cookie("shopinz", req.token, ResetCookieOption);
   return res.status(200).send({ status: "success" });
 };
 
