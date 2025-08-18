@@ -22,6 +22,7 @@ const invoiceRouter = require("./src/routes/invoiceRouter");
 const sellerRouter = require("./src/routes/sellerRouter");
 
 //    ==========    MIDDLEWARE     ==========
+app.set("trust proxy", 1);
 
 // ==========  Base Static File Provider Path  ==========
 app.use(express.static(path.join(__dirname, "./public")));
